@@ -1,9 +1,5 @@
 function App() {
-  return (
-    <main>
-      <h1>Papelería Nova</h1>
-    </main>
-  );
+  return <main />;
 }
 
 export default App;

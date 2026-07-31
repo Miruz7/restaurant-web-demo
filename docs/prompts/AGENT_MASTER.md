@@ -86,6 +86,7 @@ Antes de iniciar cualquier Sprint debes comprender el contexto del proyecto.
 
 ## Design
 
+- docs/design/BRAND_IDENTITY.md
 - docs/design/DESIGN_SYSTEM.md
 - docs/design/CREATIVE_DIRECTION.md
 - docs/design/ART_DIRECTION.md
@@ -99,23 +100,9 @@ Si detectas una contradicción importante, documenta la observación y utiliza e
 
 # Orden de Prioridad
 
-Si existe un conflicto entre documentos, seguir siempre este orden:
+Si existe un conflicto entre documentos, seguir siempre este orden: 1. docs/foundation/PROJECT_VISION.md 2. docs/design/BRAND_IDENTITY.md 3. docs/design/CREATIVE_DIRECTION.md 4. docs/design/ART_DIRECTION.md 5. docs/design/DESIGN_SYSTEM.md 6. docs/design/HERO_SPECIFICATION.md 7. docs/engineering/COMPONENT_ARCHITECTURE.md 8. docs/engineering/ARCHITECTURE.md 9. docs/engineering/CODING_STANDARDS.md 10. docs/engineering/UI_PHILOSOPHY.md 11. docs/foundation/ROADMAP.md 12. docs/foundation/AI_CONTEXT.md
 
-1. docs/foundation/PROJECT_VISION.md
-2. docs/design/CREATIVE_DIRECTION.md
-3. docs/design/ART_DIRECTION.md
-4. docs/design/DESIGN_SYSTEM.md
-5. docs/design/HERO_SPECIFICATION.md
-6. docs/engineering/COMPONENT_ARCHITECTURE.md
-7. docs/engineering/ARCHITECTURE.md
-8. docs/engineering/CODING_STANDARDS.md
-9. docs/engineering/UI_PHILOSOPHY.md
-10. docs/foundation/ROADMAP.md
-11. docs/foundation/AI_CONTEXT.md
-
-Nunca ignorar un documento con mayor prioridad.
-
----
+SNunca ignorar un documento con mayor prioridad.
 
 # Ejecución de Sprints
 

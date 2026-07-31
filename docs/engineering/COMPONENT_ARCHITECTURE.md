@@ -79,8 +79,7 @@ Esto hace que la API del componente sea mucho más clara y escalable.
       background: "bg-cover bg-center",
       color: "text-secondary",
       border: "",
-      overlay:
-        "after:bg-primary after:opacity-75 after:absolute after:inset-0 after:content-['']",
+      overlay: "after:bg-primary after:opacity-75 after:absolute after:inset-0 after:content-['']",
     },
   } as const;
   ```

@@ -1,0 +1,15 @@
+:root {
+  --motion-duration-150: 150ms;
+  --motion-duration-200: 200ms;
+  --motion-duration-300: 300ms;
+  --motion-duration-400: 400ms;
+  --motion-duration-600: 600ms;
+  --motion-duration-800: 800ms;
+  --motion-duration-1000: 1000ms;
+
+  --motion-ease-out: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  --motion-ease-in: cubic-bezier(0.55, 0.055, 0.675, 0.19);
+  --motion-ease-in-out: cubic-bezier(0.645, 0.045, 0.355, 1);
+  --motion-ease-power2-out: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  --motion-ease-power3-out: cubic-bezier(0.23, 1, 0.32, 1);
+}

@@ -1,4 +1,94 @@
+@import "./styles/tokens/colors.css";
+@import "./styles/tokens/typography.css";
+@import "./styles/tokens/spacing.css";
+@import "./styles/tokens/radius.css";
+@import "./styles/tokens/shadow.css";
+@import "./styles/tokens/motion.css";
+@import "./styles/tokens/container.css";
+@import "./styles/tokens/breakpoints.css";
+@import "./styles/tokens/opacity.css";
+@import "./styles/tokens/z-index.css";
+
 @import "tailwindcss";
+
+@theme inline {
+  --color-primary: var(--color-primary);
+  --color-secondary: var(--color-secondary);
+  --color-accent: var(--color-accent);
+  --color-warning: var(--color-warning);
+  --color-info: var(--color-info);
+  --color-success: var(--color-success);
+
+  --font-sans: var(--font-family-sans);
+  --font-heading: var(--font-family-heading);
+  --font-mono: var(--font-family-mono);
+
+  --spacing-0: var(--space-0);
+  --spacing-8: var(--space-8);
+  --spacing-16: var(--space-16);
+  --spacing-24: var(--space-24);
+  --spacing-32: var(--space-32);
+  --spacing-40: var(--space-40);
+  --spacing-48: var(--space-48);
+  --spacing-64: var(--space-64);
+  --spacing-80: var(--space-80);
+  --spacing-96: var(--space-96);
+  --spacing-128: var(--space-128);
+  --spacing-160: var(--space-160);
+
+  --radius-0: var(--radius-0);
+  --radius-6: var(--radius-6);
+  --radius-12: var(--radius-12);
+  --radius-16: var(--radius-16);
+  --radius-20: var(--radius-20);
+  --radius-24: var(--radius-24);
+  --radius-32: var(--radius-32);
+  --radius-full: var(--radius-full);
+
+  --shadow-0: var(--shadow-0);
+  --shadow-8: var(--shadow-8);
+  --shadow-16: var(--shadow-16);
+  --shadow-24: var(--shadow-24);
+  --shadow-32: var(--shadow-32);
+  --shadow-48: var(--shadow-48);
+  --shadow-64: var(--shadow-64);
+
+  --ease-out: var(--motion-ease-out);
+  --ease-in: var(--motion-ease-in);
+  --ease-in-out: var(--motion-ease-in-out);
+  --ease-power2-out: var(--motion-ease-power2-out);
+  --ease-power3-out: var(--motion-ease-power3-out);
+
+  --breakpoint-320: var(--breakpoint-320);
+  --breakpoint-768: var(--breakpoint-768);
+  --breakpoint-1024: var(--breakpoint-1024);
+  --breakpoint-1440: var(--breakpoint-1440);
+  --breakpoint-1920: var(--breakpoint-1920);
+  --breakpoint-3840: var(--breakpoint-3840);
+
+  --opacity-0: var(--opacity-0);
+  --opacity-25: var(--opacity-25);
+  --opacity-50: var(--opacity-50);
+  --opacity-75: var(--opacity-75);
+  --opacity-100: var(--opacity-100);
+
+  --z-base: var(--z-index-base);
+  --z-above: var(--z-index-above);
+  --z-nav: var(--z-index-nav);
+  --z-nav-mobile: var(--z-index-nav-mobile);
+  --z-overlay: var(--z-index-overlay);
+  --z-modal: var(--z-index-modal);
+  --z-popover: var(--z-index-popover);
+  --z-toast: var(--z-index-toast);
+  --z-tooltip: var(--z-index-tooltip);
+
+  --container-sm: var(--container-sm);
+  --container-md: var(--container-md);
+  --container-lg: var(--container-lg);
+  --container-xl: var(--container-xl);
+  --container-2xl: var(--container-2xl);
+  --container-3xl: var(--container-3xl);
+}
 
 /* Reset CSS */
 

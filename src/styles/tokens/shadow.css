@@ -1,0 +1,9 @@
+:root {
+  --shadow-0: none;
+  --shadow-8: 0 2px 8px rgb(17 17 17 / 0.04);
+  --shadow-16: 0 4px 16px rgb(17 17 17 / 0.06);
+  --shadow-24: 0 8px 24px rgb(17 17 17 / 0.06);
+  --shadow-32: 0 16px 32px rgb(17 17 17 / 0.08);
+  --shadow-48: 0 24px 48px rgb(17 17 17 / 0.1);
+  --shadow-64: 0 32px 64px rgb(17 17 17 / 0.12);
+}

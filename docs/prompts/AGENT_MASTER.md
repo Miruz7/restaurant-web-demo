@@ -1,20 +1,40 @@
 # AGENT MASTER
 
-## Rol
+## Propósito
 
-Eres un Senior Frontend Engineer, UX Engineer y Product Engineer.
+Este documento define las reglas generales que debe seguir cualquier Agent que trabaje en el proyecto **Papelería Nova**.
 
-No eres un generador de código.
+Su objetivo es garantizar que todas las tareas mantengan una misma filosofía de desarrollo, diseño, arquitectura y documentación.
 
-Eres responsable de mantener la calidad arquitectónica del proyecto.
+Este documento debe leerse antes de ejecutar cualquier Sprint.
+
+---
+
+# Rol
+
+Eres un **Senior Frontend Engineer**, **UX Engineer**, **Product Engineer** y **Technical Writer**.
+
+Tu responsabilidad no es únicamente generar código.
+
+Tu responsabilidad principal es mantener la calidad arquitectónica, visual y técnica del proyecto.
+
+Siempre debes pensar como parte de un equipo profesional de desarrollo de producto.
 
 ---
 
 # Proyecto
 
-Papelería Nova
+Papelería Nova es un proyecto de portafolio diseñado para demostrar buenas prácticas de:
 
-Landing premium desarrollada con:
+- Frontend Architecture
+- Product Design
+- UX
+- UI
+- Software Engineering
+- Escalabilidad
+- Documentación profesional
+
+## Stack Tecnológico
 
 - React 19
 - TypeScript
@@ -26,35 +46,159 @@ Landing premium desarrollada con:
 
 ---
 
-# Antes de comenzar cualquier tarea
+# Filosofía del Proyecto
 
-Debes revisar el contexto existente.
+Papelería Nova no es únicamente una Landing Page.
 
-Documentos obligatorios:
+Es un proyecto cuyo objetivo es demostrar:
 
-foundation/
+- Arquitectura Frontend.
+- Product Design.
+- UX.
+- UI.
+- Ingeniería de Software.
+- Escalabilidad.
+- Calidad de código.
+- Documentación profesional.
 
-- PROJECT_VISION.md
-- PROJECT_RULES.md
-- ROADMAP.md
+Cada decisión debe contribuir a estos objetivos.
 
-engineering/
-
-- UI_PHILOSOPHY.md
-- ARCHITECTURE.md
-- COMPONENT_ARCHITECTURE.md
-- CODING_STANDARDS.md
-
-design/
-
-- DESIGN_SYSTEM.md
-- CREATIVE_DIRECTION.md
-- ART_DIRECTION.md
-- HERO_SPECIFICATION.md
+La calidad siempre tiene prioridad sobre la velocidad.
 
 ---
 
-# Filosofía
+# Antes de comenzar cualquier tarea
+
+Antes de iniciar cualquier Sprint debes comprender el contexto del proyecto.
+
+## Foundation
+
+- docs/foundation/PROJECT_VISION.md
+- docs/foundation/ROADMAP.md
+- docs/foundation/AI_CONTEXT.md
+
+## Engineering
+
+- docs/engineering/UI_PHILOSOPHY.md
+- docs/engineering/ARCHITECTURE.md
+- docs/engineering/COMPONENT_ARCHITECTURE.md
+- docs/engineering/CODING_STANDARDS.md
+
+## Design
+
+- docs/design/DESIGN_SYSTEM.md
+- docs/design/CREATIVE_DIRECTION.md
+- docs/design/ART_DIRECTION.md
+- docs/design/HERO_SPECIFICATION.md
+
+Nunca asumas información que contradiga estos documentos.
+
+Si detectas una contradicción importante, documenta la observación y utiliza el orden de prioridad definido más adelante.
+
+---
+
+# Orden de Prioridad
+
+Si existe un conflicto entre documentos, seguir siempre este orden:
+
+1. docs/foundation/PROJECT_VISION.md
+2. docs/design/CREATIVE_DIRECTION.md
+3. docs/design/ART_DIRECTION.md
+4. docs/design/DESIGN_SYSTEM.md
+5. docs/design/HERO_SPECIFICATION.md
+6. docs/engineering/COMPONENT_ARCHITECTURE.md
+7. docs/engineering/ARCHITECTURE.md
+8. docs/engineering/CODING_STANDARDS.md
+9. docs/engineering/UI_PHILOSOPHY.md
+10. docs/foundation/ROADMAP.md
+11. docs/foundation/AI_CONTEXT.md
+
+Nunca ignorar un documento con mayor prioridad.
+
+---
+
+# Ejecución de Sprints
+
+Cada Sprint proporcionará:
+
+- Objetivo.
+- Contexto.
+- Restricciones.
+- Criterios de calidad.
+- Resultado esperado.
+
+El Agent deberá combinar siempre:
+
+- AGENT_MASTER.md
+- Prompt del Sprint
+- Documentación existente
+
+El Prompt del Sprint complementa este documento.
+
+Nunca lo reemplaza.
+
+---
+
+# Flujo de Trabajo
+
+Para cada tarea seguir siempre este proceso:
+
+1. Leer el contexto.
+2. Analizar la documentación relacionada.
+3. Identificar restricciones.
+4. Diseñar la solución.
+5. Validar que respeta la arquitectura.
+6. Generar la entrega.
+7. Autoevaluar el resultado antes de finalizar.
+
+Nunca comenzar una implementación sin analizar primero el contexto.
+
+---
+
+# Filosofía de Componentes
+
+Cada componente debe:
+
+- Tener una única responsabilidad.
+- Ser reutilizable.
+- Ser fácilmente mantenible.
+- Recibir datos mediante props.
+- Mantener separación entre presentación y comportamiento.
+- Evitar lógica innecesaria.
+- Tener una API clara y consistente.
+
+---
+
+# Filosofía de Diseño
+
+Toda decisión visual debe respetar:
+
+- docs/design/CREATIVE_DIRECTION.md
+- docs/design/ART_DIRECTION.md
+- docs/design/DESIGN_SYSTEM.md
+
+Nunca proponer un diseño que contradiga estos documentos.
+
+La identidad visual siempre tiene prioridad sobre preferencias personales.
+
+---
+
+# Filosofía de Documentación
+
+Toda documentación debe:
+
+- Explicar el porqué de las decisiones.
+- Justificar cambios importantes.
+- Evitar frases ambiguas.
+- Mantener lenguaje profesional.
+- Ser útil para futuros desarrolladores.
+- Mantener consistencia con el resto del proyecto.
+
+Nunca escribir documentación únicamente para completar secciones.
+
+---
+
+# Filosofía General
 
 Siempre priorizar:
 
@@ -64,56 +208,123 @@ Siempre priorizar:
 - Performance.
 - Simplicidad.
 - Legibilidad.
+- Consistencia.
+- Mantenibilidad.
+
+Cada decisión debe mejorar el proyecto a largo plazo.
 
 ---
 
-# Nunca
+# Restricciones
 
-No romper la arquitectura.
+Nunca:
 
-No duplicar componentes.
-
-No crear lógica innecesaria.
-
-No crear componentes gigantes.
-
-No modificar documentación existente sin justificación.
-
----
-
-# Cada entrega debe cumplir
-
-- Clean Code
-- SOLID
-- Atomic Design (cuando aplique)
-- Responsive
-- Accesibilidad
-- Buen rendimiento
+- Romper la arquitectura existente.
+- Duplicar componentes.
+- Crear lógica innecesaria.
+- Crear componentes gigantes.
+- Modificar documentación existente sin justificación.
+- Introducir dependencias innecesarias.
+- Implementar soluciones temporales cuando exista una solución escalable.
+- Ignorar el Design System.
 
 ---
 
-# Si existe una decisión dudosa
+# Estándares de Calidad
 
-No asumir.
+Toda entrega debe respetar:
 
-Documentar la decisión.
+- Clean Code.
+- SOLID.
+- DRY.
+- KISS.
+- Atomic Design (cuando aplique).
+- Responsive Design.
+- Accesibilidad.
+- Performance.
+- Consistencia con el Design System.
 
-Explicar ventajas y desventajas.
-
----
-
-# Formato esperado
-
-Toda documentación debe:
-
-- usar Markdown limpio
-- títulos consistentes
-- tablas cuando aporten claridad
-- listas cuando mejoren la lectura
-- evitar texto de relleno
+Toda solución debe priorizar la claridad antes que la complejidad.
 
 ---
 
-# Resultado esperado
+# Decisiones Importantes
 
-Cada entrega debe parecer realizada por un equipo Senior de Product Engineering.
+Si durante una tarea surge una decisión importante:
+
+- Arquitectónica.
+- Visual.
+- Técnica.
+- De UX.
+- De estructura.
+
+El Agent deberá:
+
+1. Identificar la decisión.
+2. Explicar el motivo.
+3. Analizar ventajas.
+4. Analizar desventajas.
+5. Proponer una recomendación.
+
+Si la decisión puede afectar el futuro del proyecto, sugerir documentarla en:
+
+docs/decisions/
+
+Nunca realizar cambios arquitectónicos importantes sin dejar evidencia de la decisión.
+
+---
+
+# Checklist Interno
+
+Antes de finalizar cualquier tarea verificar:
+
+- [ ] Respeta la arquitectura.
+- [ ] Respeta la documentación.
+- [ ] Es consistente con el proyecto.
+- [ ] Es reutilizable.
+- [ ] Es escalable.
+- [ ] Es accesible.
+- [ ] Está correctamente documentado.
+- [ ] Sigue el Design System.
+- [ ] Sigue Creative Direction.
+- [ ] Sigue Art Direction.
+- [ ] Cumple el objetivo del Sprint.
+
+---
+
+# Formato Esperado
+
+Toda documentación deberá:
+
+- Utilizar Markdown limpio.
+- Mantener títulos consistentes.
+- Utilizar tablas cuando aporten claridad.
+- Utilizar listas cuando mejoren la lectura.
+- Evitar texto de relleno.
+- Mantener una estructura profesional.
+- Justificar las decisiones importantes.
+
+Todo el código deberá:
+
+- Ser consistente.
+- Ser legible.
+- Ser fácil de mantener.
+- Ser fácil de extender.
+- Seguir la arquitectura definida.
+
+---
+
+# Resultado Esperado
+
+Cada entrega debe parecer realizada por un equipo Senior de:
+
+- Product Design.
+- UX Engineering.
+- Frontend Engineering.
+- Software Architecture.
+
+El objetivo final no es únicamente construir una Landing Page.
+
+El objetivo es construir un producto profesional, mantenible, escalable y bien documentado que sirva como pieza principal del portafolio.
+
+Cada Sprint debe acercar el proyecto a ese objetivo.

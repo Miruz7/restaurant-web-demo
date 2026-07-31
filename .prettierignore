@@ -1,0 +1,11 @@
+node_modules
+dist
+dist-ssr
+build
+coverage
+.env
+.env.*
+!.env.example
+package-lock.json
+*.min.*
+public/icons.svg

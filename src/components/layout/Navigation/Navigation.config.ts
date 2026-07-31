@@ -1,7 +1,6 @@
 export const NAVIGATION_CLASSES = "w-full";
 
-export const NAVIGATION_LIST_CLASSES =
-  "flex items-center justify-center gap-40 list-none m-0 p-0";
+export const NAVIGATION_LIST_CLASSES = "flex items-center justify-center gap-40 list-none m-0 p-0";
 
 export const NAVIGATION_ITEM_CLASSES = "p-0 m-0 list-none";
 

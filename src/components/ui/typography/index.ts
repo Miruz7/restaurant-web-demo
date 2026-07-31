@@ -5,12 +5,7 @@ export type {
   CaptionProps,
 } from "./Typography.types";
 
-export type {
-  HeadingLevel,
-  TextSize,
-  TextWeight,
-  CaptionSize,
-} from "./Typography.config";
+export type { HeadingLevel, TextSize, TextWeight, CaptionSize } from "./Typography.config";
 
 export {
   HEADING_TAGS,

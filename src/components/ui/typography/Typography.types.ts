@@ -1,10 +1,5 @@
 import type { ReactNode } from "react";
-import type {
-  CaptionSize,
-  HeadingLevel,
-  TextSize,
-  TextWeight,
-} from "./Typography.config";
+import type { CaptionSize, HeadingLevel, TextSize, TextWeight } from "./Typography.config";
 
 export interface BaseTypographyProps {
   readonly children: ReactNode;

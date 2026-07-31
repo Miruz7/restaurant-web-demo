@@ -14,9 +14,7 @@ function Text({
   className,
 }: TextProps) {
   return (
-    <p className={cn("font-sans", TEXT_SIZES[size], TEXT_WEIGHTS[weight], className)}>
-      {children}
-    </p>
+    <p className={cn("font-sans", TEXT_SIZES[size], TEXT_WEIGHTS[weight], className)}>{children}</p>
   );
 }
 

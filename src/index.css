@@ -90,7 +90,9 @@
   --container-3xl: var(--container-3xl);
 }
 
-/* Reset CSS */
+/* =====================================================================
+   1. Reset CSS (sane defaults)
+   ===================================================================== */
 
 *,
 *::before,
@@ -102,6 +104,11 @@
 
 html {
   scroll-behavior: smooth;
+  /* scroll-padding-top: respeta altura del header fixed al hacer anchor scroll
+     Reutiliza --nova-header-height definido dinámicamente por MainLayout. */
+  scroll-padding-top: calc(var(--nova-header-height, 80px) + 16px);
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
 }
 
 html,
@@ -112,8 +119,17 @@ body,
 }
 
 body {
-  font-family: system-ui, sans-serif;
+  /* Tipografía base = familia sans-semántica desde tokens (no hardcodeada).
+     El fallback a system-ui evita FOIT si las fuentes aún no cargan. */
+  font-family: var(--font-family-sans), system-ui, -apple-system, sans-serif;
+  font-feature-settings: "cv11", "ss01";
+  line-height: 1.6;
+  color: var(--color-primary, #111);
+  background-color: var(--color-secondary, #fff);
   overflow-x: hidden;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 img,
@@ -132,6 +148,12 @@ select {
   font: inherit;
 }
 
+button {
+  background: transparent;
+  border: 0;
+  cursor: pointer;
+}
+
 a {
   color: inherit;
   text-decoration: none;
@@ -140,4 +162,74 @@ a {
 ul,
 ol {
   list-style: none;
+}
+
+::selection {
+  background-color: var(--color-accent, #e63946);
+  color: var(--color-secondary, #fff);
+}
+
+/* =====================================================================
+   2. Accesibilidad global: foco, foco visible, reduce-motion
+   ===================================================================== */
+
+*,
+*::before,
+*::after {
+  outline-color: var(--color-accent, #e63946);
+  outline-offset: 2px;
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-accent, #e63946);
+  outline-offset: 3px;
+  border-radius: var(--radius-6, 6px);
+}
+
+/* Usuario prefiere reducir movimiento — deshabilitar smooth scroll y transiciones default */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* =====================================================================
+   3. Tipografía base + heading defaults (valores temporales, no definitivos)
+   ===================================================================== */
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-family-heading), var(--font-family-sans), system-ui, sans-serif;
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+  font-weight: 700;
+  color: var(--color-primary, #111);
+}
+
+p {
+  font-family: var(--font-family-sans), system-ui, sans-serif;
+  line-height: 1.6;
+  color: var(--color-primary, #111);
+}
+
+code, pre, kbd, samp {
+  font-family: var(--font-family-mono), ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 0.925em;
+}
+
+/* =====================================================================
+   4. Reset de scrollbars (opcional, sin romper accesibilidad)
+   ===================================================================== */
+
+@layer base {
+  html {
+    scrollbar-gutter: stable;
+  }
 }

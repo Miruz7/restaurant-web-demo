@@ -1,5 +1,20 @@
 # AGENT MASTER
 
+# Definition of Done
+
+Una tarea solo se considera finalizada cuando cumple todos los siguientes puntos:
+
+- La implementación respeta la documentación del proyecto.
+- No rompe la arquitectura existente.
+- El código compila correctamente.
+- TypeScript no reporta errores.
+- ESLint no reporta errores.
+- El componente es reutilizable.
+- La accesibilidad básica está garantizada.
+- La solución es escalable.
+- Se documentan las decisiones importantes.
+- Se entrega una autoevaluación del Sprint.
+
 ## Propósito
 
 Este documento define las reglas generales que debe seguir cualquier Agent que trabaje en el proyecto **Papelería Nova**.

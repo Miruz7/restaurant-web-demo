@@ -200,3 +200,50 @@ Esto hace que la API del componente sea mucho más clara y escalable.
     isActive={(item) => scrollSpySectionId === item.id}
   />
   ```
+
+---
+
+## Regla: Patrón 4-arch es **recomendado, no obligatorio**
+
+El patrón estándar `Component.tsx` + `Component.types.ts` + `Component.config.ts` + `index.ts`
+se aplica **cuando el componente lo justifica**. No es obligatorio para componentes
+simples.
+
+### Casos donde SÍ es obligatorio `Component.config.ts`
+
+Existe el archivo de configuración **solo cuando se cumple AL MENOS UNA** de estas condiciones:
+
+1. **Constantes reutilizables** que serán consumidas desde FUERA del propio componente
+   (otro componente, un hook, tests, utilidades).
+2. **Variantes** tipadas (`variant`, `size`, `radius`, `tone`, `align`) con mapas
+   `const VARIANTS = { a: "...", b: "..." } as const`.
+3. **Mapas** de clases, breakpoints, pesos, z-index, estados (hover/focus/disabled/loading).
+4. **Funciones puras** de configuración: `getButtonClasses()`, `getSectionVariants()`,
+   `getCompoundVariants()` (cualquier helper de composición que convenga testear aisladamente).
+5. **Compound variants** o combinaciones condicionales no triviales.
+
+### Casos donde NO hace falta `Component.config.ts`
+
+Si un componente **solo renderiza estructura** (markup + clases hardcodeadas) y no cumple
+ninguna condición anterior, puede reducirse a 3 archivos:
+
+```
+Component/
+  Component.tsx
+  Component.types.ts
+  index.ts
+```
+
+Ejemplos típicos donde ahorrar el `.config.ts` evita archivos vacíos de 2 constantes sin
+valor añadido:
+
+- `ScrollIndicator` (1 solo icon placeholder, 0 variantes).
+- `HeroOverlay` en su primera versión simple (1 solo `intensity: "none"`, sin mapas).
+- Bloques de layout puros sin variantes.
+
+**Regla de decisión rápida:** si al abrir `Component.config.ts` lo primero que ves es
+`export const FOO = ""` y `export const BAR = ""` (2 strings sin reutilizar fuera),
+probablemente el componente no necesita `.config.ts` todavía.
+
+Cuando el componente **crezca** en un Sprint posterior y pase a tener variantes/mapas/helpers,
+se crea su `Component.config.ts` en ese momento. No antes.

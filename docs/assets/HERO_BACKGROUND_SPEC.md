@@ -65,20 +65,49 @@ El Background es **soporte**, NUNCA protagonista. Sus reglas:
 
 ### 2.2 Punto focal
 
-**Un solo punto focal absoluto**: la **esquina superior del cuaderno abierto de primer plano** — justo donde comienza la primera línea / el patrón de cuadrícula del cuaderno.
+**Un solo punto focal absoluto: la esquina superior izquierda del cuaderno abierto**,
+justo donde comienza la primera línea / el patrón de cuadrícula del cuaderno.
+
+Este punto marca el inicio natural del recorrido visual y conecta el contenido del Hero con
+la escena. Toda la composición deberá dirigir la mirada hacia este punto mediante la
+iluminación, la perspectiva y la disposición de los objetos.
+
+Recorrido visual esperado del usuario (alineado con el layout texto-izq del Hero):
+
+```
+Header
+↓
+Badge
+↓
+Título
+↓
+Descripción
+↓
+Botones
+↓
+Cuaderno (punto focal — esquina sup-izq)
+↓
+Laptop
+↓
+Mochila
+```
 
 ¿Por qué ahí?
 
 - Es la zona donde "empieza una idea" → storytelling perfecto con la marca.
-- Coincide aproximadamente con el eje visual derecho (columna visual del Hero), por lo
-  que no roba foco al texto del lado izquierdo.
+- El Hero tiene el texto a la izquierda; la mirada baja naturalmente por la columna de
+  copy y termina encajando perfectamente en la esquina superior-izquierda del cuaderno
+  (interfaz entre columna de copy y columna visual).
+- No roba foco inicial al copy, pero se convierte en el punto de anclaje visual después
+  de leer.
 
 ### 2.3 Equilibrio y espacio negativo
 
 - **Composición asimétrica, equilibrada.** No centrada.
 - Lado izquierdo (40–45%) = **90% vacío**. Solo superficie + poca textura ambiental.
 - Lado derecho (55–60%) = zona de producto. Mayor densidad visual.
-- Regla de los tercios: punto focal cae en la intersección **tercio superior derecho**.
+- Regla de los tercios: punto focal cae en la intersección **tercio superior horizontal /
+  tercio vertical central-derecha**, alineado con el final natural del flujo de lectura.
 - **Ningún elemento toca los bordes superior ni inferior** del frame. Margen de
   respiración.
 
@@ -96,14 +125,14 @@ La escena responde, sin palabras, a la pregunta del visitante:
 
 > "¿Qué **tipo de lugar** es Papelería Nova?"
 
-Respuesta visual, desglosada por pilar estratégico (BRAND_IDENTITY §Pilares):
+Respuesta visual, desglosado por pilar estratégico (BRAND_IDENTITY §Pilares):
 
-| Pilar            | Cómo se ve en el fondo                                                                                                                                                                          |
-| ---------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **Creatividad**  | Cuaderno **abierto** (no cerrado), con una primera línea empezada — sugiere una idea en curso, no un stock estático. Plumas de colores suaves + resaltador apagado → material listo para crear. |
-| **Organización** | Todos los objetos están **alineados**, en ángulo recto o 45° controlado. No solapamientos caóticos. Gaps uniformes entre objetos (regla 8px del Design System traducida a fotografía).          |
-| **Tecnología**   | Laptop **abierta, encendida**, con interfaz limpia (sin marcas). Conexión entre "papel + digital" — Nova no es solo papel, es también herramienta moderna.                                      |
-| **Confianza**    | Materiales **reales**, desgastados ligeramente (cuaderno no perfecto, textura de cuero en lona de mochila) — no parece CGI barato. Iluminación creíble, nada de HDR falso.                      |
+| Pilar            | Cómo se ve en el fondo                                                                                                                                                                           |
+| ---------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| **Creatividad**  | Cuaderno **abierto** (no cerrado), con una primera línea empezada — sugiere una idea en curso, no un stock estático. Plumas de colores suaves + resaltador apagado → material listo para crear.  |
+| **Organización** | Todos los objetos están **alineados**, en ángulo recto o 45° controlado. No solapamientos caóticos. Gaps uniformes entre objetos (regla 8px del Design System traducida a fotografía).           |
+| **Tecnología**   | Laptop **abierta, encendida**, con interfaz sutil y abstracta (sin marcas, sin pantalla blanca/negra). Conexión entre "papel + digital" — Nova no es solo papel, es también herramienta moderna. |
+| **Confianza**    | Materiales **reales**, desgastados ligeramente (cuaderno no perfecto, textura de cuero en lona de mochila) — no parece CGI barato. Iluminación creíble, nada de HDR falso.                       |
 
 Micro-historia contada:
 
@@ -115,17 +144,20 @@ Micro-historia contada:
 
 ## 4. Productos presentes
 
-**Exactamente 6 objetos.** Ni uno más (riesgo de caos) ni uno menos (riesgo de escasez).
-Cada uno tiene un propósito narrativo:
+**La escena está compuesta por exactamente seis grupos de composición.** Cada grupo puede
+contener varios elementos físicos relacionados, pero visualmente funciona como una única
+unidad compositiva. Ni un grupo más (riesgo de caos) ni uno menos (riesgo de escasez).
 
-| #   | Producto                                                                    | ¿Por qué aparece? — Propósito narrativo / estratégico                                                                                                                                  | Plano en composición                                             |
-| --- | --------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------- |
-| 1   | **Cuaderno de notas A4 abierto**                                            | ✨ **PROTAGONISTA**. Simboliza "ideas tomando forma". Hojas blancas con un solo apunte. Cuadrícula sutil 5mm.                                                                          | Primer plano, foco 100%.                                         |
-| 2   | **Juego de 3 plumas + 1 resaltador**                                        | Variedad de herramienta creativa. Colores: 1 neutro (gris/negro) + 1 marino (principal) + 1 naranja (acento) + 1 resaltador amarillo pastel (no saturado). Posado encima del cuaderno. | Primer plano, apoyado en cuaderno.                               |
-| 3   | **Laptop moderna (13–14") abierta**                                         | Puente hacia **Tecnología**. Pantalla con UI limpia: app de notas / diseño, sin contenido real. Sin logo de marca en la tapa.                                                          | Plano medio, detrás del cuaderno, lado derecho.                  |
-| 4   | **Mochila / bolso urbano**                                                  | Perfil cercano + movilidad (estudiar/trabajar fuera de casa). Tela lona + cuero, desgastada ligera.                                                                                    | Plano medio, a la derecha/abajo. Detrás del laptop parcialmente. |
-| 5   | **Clip metálico** + **borrador pequeño**                                    | 2 micro-elementos de primer plano **fuera de foco** (foreground). Dan profundidad y textura sin ruido narrativo.                                                                       | Delante del plano (z=3), muy borrosos.                           |
-| 6   | **Lámpara de escritorio minimalista** (fuera del frame parcial, solo brazo) | Define la fuente de luz principal de la escena. Crea un "cuarto de verdad", no una foto aislada.                                                                                       | Fondo / plano medio, esquina superior derecha (partial).         |
+Cada grupo tiene un propósito narrativo:
+
+| Grupo | Nombre unidad compositiva                                     | ¿Por qué aparece? — Propósito narrativo / estratégico                                                                                                                                                                                                                   | Plano en composición                                             |
+| ----- | ------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------- |
+| 1     | **Cuaderno — Grupo protagonista**                             | ✨ **PROTAGONISTA**. Simboliza "ideas tomando forma". Hojas blancas: puede contener trazos, líneas, diagramas, formas geométricas o escritura completamente ilegible. **Nunca palabras reconocibles. Nunca frases. Nunca marcas. Nunca números.** Cuadrícula sutil 5mm. | Primer plano, foco 100%.                                         |
+| 2     | **Set de escritura — 3 plumas + 1 resaltador**                | Variedad de herramienta creativa. Colores: 1 neutro (gris/negro) + 1 marino (principal) + 1 naranja (acento) + 1 resaltador amarillo pastel (no saturado). Posado encima del cuaderno.                                                                                  | Primer plano, apoyado en cuaderno.                               |
+| 3     | **Laptop moderna (13–14") abierta**                           | Puente hacia **Tecnología**. **Pantalla NO totalmente blanca ni totalmente negra; debe mostrar una interfaz extremadamente sutil, abstracta y sin marcas, aportando realismo sin convertirse en un punto focal.** Sin logo de marca en la tapa.                         | Plano medio, detrás del cuaderno, lado derecho.                  |
+| 4     | **Mochila / bolso urbano**                                    | Perfil cercano + movilidad (estudiar/trabajar fuera de casa). Tela lona + cuero, desgastada ligera.                                                                                                                                                                     | Plano medio, a la derecha/abajo. Detrás del laptop parcialmente. |
+| 5     | **Accesorios foreground — Clip metálico + borrador pequeño**  | 2 micro-elementos de primer plano **fuera de foco** (foreground). Dan profundidad y textura sin ruido narrativo.                                                                                                                                                        | Delante del plano (z=3), muy borrosos.                           |
+| 6     | **Lámpara de escritorio minimalista (brazo parcial visible)** | Define la fuente de luz principal de la escena. Crea un "cuarto de verdad", no una foto aislada.                                                                                                                                                                        | Fondo / plano medio, esquina superior derecha (partial).         |
 
 ### 4.1 Productos **PROHIBIDOS** en esta versión v1
 
@@ -134,8 +166,8 @@ Nunca incluir en Master Artwork v1 (guardar para variantes A/B test o temporadas
 - ❌ Café / taza / vaso → añade cliché, Nova no es café-tienda.
 - ❌ Planta / maceta → "papelería + planta" = tendencia sobreusada.
 - ❌ Auriculares / reloj inteligente → diluye "papelería".
-- ❌ Gomas, tijeras, pegamento, etc. → ya hay 6 objetos. Cada añadido empeora la
-  organización percibida.
+- ❌ Gomas, tijeras, pegamento, etc. → ya hay 6 grupos compositivos. Cada añadido
+  empeora la organización percibida.
 
 ---
 
@@ -165,7 +197,7 @@ Efecto buscado:
 
 | Elemento luz                 | Descripción visual                                                                                                                                                                                                                                    |
 | ---------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **Dirección principal**      | **Superior-derecha, lateral.** Viene de arriba y desde la derecha del espectador (justificada por la lámpara del #6 de §4). Crea sombras largas pero suaves que caen hacia el lado inferior-izquierdo.                                                |
+| **Dirección principal**      | **Superior-derecha, lateral.** Viene de arriba y desde la derecha del espectador (justificada por la lámpara del grupo 6 de §4). Crea sombras largas pero suaves que caen hacia el lado inferior-izquierdo.                                           |
 | **Luz secundaria / relleno** | Suave, procedente de la izquierda-ventana imaginaria. Rellena sombras, evita que queden zonas totalmente negras. No elimina las sombras completamente (mantiene profundidad).                                                                         |
 | **Temperatura**              | **Ligeramente cálido en foco → ligeramente más frío en el fondo.** Primer plano tiene toques cálidos (cuaderno papel, luces naranja suave). El fondo (pared) es más neutro/frío azulado (marca principal). Separa capas por temperatura sin palabras. |
 | **Carácter general**         | Difusa, suave. **Ninguna sombra dura y marcada.** Reflejos naturales en la pantalla del laptop y cuerpos metálicos (clip), pero sin brillos quemados. Alto detalle en texturas (grano papel, lona mochila).                                           |
@@ -184,6 +216,10 @@ Efecto buscado:
 | **Acentos (~5%)**      | **Naranja cálido muy medido.** En: resorte metálico clip, parte superior 1 resaltador, 1 destello minúsculo en brazo lámpara, toque naranja en un bolígrafo. **5% MÁXIMO de píxeles totales.** |
 | **Prohibido**          | ❌ Colores saturados que no están en la marca (rojo intenso, verde eléctrico, rosa fuerte, púrpura). ❌ Cian fuerte (se confunde con principal).                                               |
 | **General**            | Gama baja saturación (pastel / apagada). Ningún color "grita".                                                                                                                                 |
+
+> **Nota sobre los porcentajes:** Los porcentajes representan una intención visual y
+> serán evaluados durante la revisión humana del asset, no como una restricción
+> matemática del modelo generativo.
 
 ---
 
@@ -221,13 +257,14 @@ distintos en v1** (aumentaría mantenimiento).
 
 | Breakpoint              | Aspect ratio util                   | Zona segura (no recortar nunca) — qué debe verse siempre                                                                                         | ¿Qué se puede recortar (perdida aceptable)?                                                                 |
 | ----------------------- | ----------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------ | ----------------------------------------------------------------------------------------------------------- |
-| **Desktop (≥1024px)**   | 16:9 · 3840×2160                    | 6 objetos completos + punto focal cuaderno + texto columna izq limpia                                                                            | — (usa el frame completo)                                                                                   |
-| **Tablet (768–1023px)** | 4:3 · recorte vertical centrado     | ✅ Cuaderno ✅ Plumas ✅ Laptop. Lado izquierdo vacío para texto (componente se apila).                                                          | ✂️ Moquila parcial (lado derecho recorte 15–20%). ✂️ Lámpara parcial. ✂️ Foreground borrador si hace falta. |
+| **Desktop (≥1024px)**   | 16:9 · 3840×2160                    | 6 grupos completos + punto focal cuaderno (esq sup-izq) + texto columna izq limpia                                                               | — (usa el frame completo)                                                                                   |
+| **Tablet (768–1023px)** | 4:3 · recorte vertical centrado     | ✅ Cuaderno ✅ Plumas ✅ Laptop. Lado izquierdo vacío para texto (componente se apila).                                                          | ✂️ Mochila parcial (lado derecho recorte 15–20%). ✂️ Lámpara parcial. ✂️ Foreground borrador si hace falta. |
 | **Mobile (<768px)**     | 9:16 · recorte centro → centro-bajo | ✅ Cuaderno ✅ Plumas ✅ Laptop (lo mínimo posible). ✅ Textura superficie escritorio para todo el alto del frame (no se recorte a pared vacía). | ✂️ Mochila: solo esquina visible. ✂️ Lámpara: desaparece. ✂️ Foreground blur: desaparece.                   |
 
 ### 9.1 Regla irrenunciable del recorte
 
-> **En ningún breakpoint debe quedar el punto focal (cuaderno) cortado por la mitad.**
+> **En ningún breakpoint debe quedar el punto focal (esquina superior izquierda del
+> cuaderno) cortado por la mitad.**
 >
 > El cuaderno debe verse completo (o casi completo) incluso en Mobile 360×640. Si hay
 > que recortar, se recorta de la derecha / arriba, NUNCA del punto focal.
@@ -243,7 +280,9 @@ checklist §11** y se regenera:
 
 - ❌ **Personas, manos, caras, cuerpos.** (Guardar para Servicios, no Hero Background.)
 - ❌ **Logos / marcas / texto legible.** Ni en laptop, ni en cuaderno, ni en objetos.
-  Laptop UI tiene placeholders abstractos. Cuaderno tiene rayas sin palabras.
+  Laptop UI tiene placeholders abstractos. **Cuaderno puede contener trazos, líneas,
+  diagramas, formas geométricas o escritura completamente ilegible. NUNCA palabras
+  reconocibles, frases, marcas ni números.**
 - ❌ **Otras marcas de productos reales** (logo Apple, cuaderno Moleskine, pluma BIC, etc.)
 - ❌ **Fondos caóticos / texturas fuertes / ruido excesivo.**
 - ❌ **Lenguaje de oferta / rebajas / carteles.** (Ningún "50% OFF", "Envío gratis" flotante en el fondo.)
@@ -256,6 +295,7 @@ checklist §11** y se regenera:
 - ❌ **HDR extremo** (zonas blancas quemadas, sombras negras puras).
 - ❌ **Bordes duros / aliasing** (si es generado por IA).
 - ❌ **Artefactos de compresión visibles** en WebP/AVIF.
+- ❌ **Pantalla de laptop totalmente blanca o totalmente negra (aspecto mockup).**
 
 ### 10.3 Regla de marca prohibida
 
@@ -279,10 +319,11 @@ checklist. **Cualquier item tachado justifica regeneración parcial.**
 ### 11.2 Composición (§2)
 
 - [ ] 4 planos distinguibles (fondo / plano medio / primer plano / foreground blur).
-- [ ] Punto focal 100% nítido = **esquina superior cuaderno abierto**.
+- [ ] Punto focal 100% nítido = **esquina superior izquierda del cuaderno abierto**.
 - [ ] Lado izquierdo **≥40% espacio negativo** limpio (zona segura para texto copy).
-- [ ] Regla tercios = punto focal cae en intersección superior-derecha.
+- [ ] Regla tercios = punto focal cae en intersección superior / central-derecha.
 - [ ] Ningún producto toca los bordes superior/inferiores del frame.
+- [ ] Recorrido visual Header→Badge→Título→Descripción→Botones→Cuaderno→Laptop→Mochila fluye naturalmente.
 
 ### 11.3 Storytelling (§3)
 
@@ -291,13 +332,13 @@ checklist. **Cualquier item tachado justifica regeneración parcial.**
 
 ### 11.4 Productos presentes (§4)
 
-- [ ] **Exactamente 6 objetos** (no 5, no 7).
-- [ ] Cuaderno A4 abierto ✅
-- [ ] 3 plumas + 1 resaltador = 4 útiles escritura ✅
-- [ ] Laptop moderna abierta ✅
-- [ ] Mochila lona ✅
-- [ ] 2 micro foreground (clip + borrador) fuera de foco ✅
-- [ ] Lámpara parcial (solo brazo, esquina superior der.) ✅
+- [ ] **Exactamente 6 grupos compositivos** (no 5, no 7).
+- [ ] Grupo 1 · Cuaderno A4 abierto ✅
+- [ ] Grupo 2 · 3 plumas + 1 resaltador = 4 útiles escritura ✅
+- [ ] Grupo 3 · Laptop moderna abierta ✅ · Pantalla **NO** 100% blanca ni 100% negra; UI sutil abstracta visible ✅
+- [ ] Grupo 4 · Mochila lona ✅
+- [ ] Grupo 5 · 2 micro foreground (clip + borrador) fuera de foco ✅
+- [ ] Grupo 6 · Lámpara parcial (solo brazo, esquina superior der.) ✅
 - [ ] **Ninguno** de los prohibidos §4.1 aparece.
 
 ### 11.5 Cámara (§5)
@@ -315,9 +356,9 @@ checklist. **Cualquier item tachado justifica regeneración parcial.**
 
 ### 11.7 Color (§7)
 
-- [ ] ~65% dominante neutros / blanco / gris suave.
-- [ ] ~30% secundarios = azul profundo en acotado.
-- [ ] ~**≤5%** = naranja cálido (contar píxeles si hace falta).
+- [ ] ~65% dominante neutros / blanco / gris suave (intención visual).
+- [ ] ~30% secundarios = azul profundo en acotado (intención visual).
+- [ ] ~**≤5%** = naranja cálido (intención visual, validación humana).
 - [ ] Ningún color saturado extraño fuera de paleta marca.
 
 ### 11.8 Responsive (§9) — pruebas de recorte
@@ -331,6 +372,8 @@ checklist. **Cualquier item tachado justifica regeneración parcial.**
 
 - [ ] 0 personas / manos / caras.
 - [ ] 0 logos / 0 marcas / 0 texto legible.
+- [ ] 0 palabras reconocibles / 0 frases / 0 números en ningún objeto.
+- [ ] Pantalla de laptop NO 100% blanca / NO 100% negra (sin aspecto mockup).
 - [ ] 0 fondo caótico / ruido / carteles oferta.
 - [ ] 0 sombras imposibles / CGI plástico / HDR extremo.
 
@@ -347,57 +390,57 @@ checklist. **Cualquier item tachado justifica regeneración parcial.**
 
 ## 1. Objetivo cumplido
 
-**Sí. 100% del alcance del sprint.**
+**Sí. 100% del alcance del sprint + revisión post-aprobación 7 cambios aceptados.**
 
-Se crea 1 único archivo `docs/assets/HERO_BACKGROUND_SPEC.md` sin prompts, sin código, sin
-imágenes, sin tocar otros docs. Contiene las **11 secciones pedidas por el prompt**:
+Se mantiene 1 único archivo `docs/assets/HERO_BACKGROUND_SPEC.md` sin prompts, sin código,
+sin imágenes. Contiene las **11 secciones originales** más los refinamientos aprobados:
 
 1. ✅ Objetivo (qué transmite, emoción, papel en el Hero).
-2. ✅ Composición (4 planos, punto focal, equilibrio, iluminación-como-marco).
+2. ✅ Composición (4 planos, **punto focal unificado esquina superior izquierda cuaderno**, equilibrio, iluminación-como-marco, recorrido visual documentado).
 3. ✅ Storytelling (conecta los 4 pilares de marca + micro-historia).
-4. ✅ Productos presentes (exactamente 6 objetos — cada uno con "por qué").
+4. ✅ Productos presentes (**exactamente 6 grupos compositivos** — cada uno con "por qué").
 5. ✅ Dirección de cámara (altura, distancia, lente, perspectiva).
 6. ✅ Iluminación (dirección principal, secundaria, temperatura — solo lenguaje visual).
-7. ✅ Color (dominante ~65% / secundario ~30% / acento ≤5% — sin HEX).
+7. ✅ Color (dominante ~65% / secundario ~30% / acento ≤5% — **sin HEX + nota intención visual, no validación matemática**).
 8. ✅ Movimiento (5 capas animables mapeadas a planos de composición + veto zooms/rebotes).
-9. ✅ Responsive (3 breakpoints, zonas seguras, regla punto focal irrecortable).
-10. ✅ Restricciones (10.1 contenido proh / 10.2 calidad proh / 10.3 marca proh).
-11. ✅ Checklist aprobación (10 sub-grupos, 44 items chequeables).
+9. ✅ Responsive (3 breakpoints, zonas seguras, regla punto focal irrecortable — **sin cambios**).
+10. ✅ Restricciones (10.1 contenido proh texto ilegible reforzado / 10.2 calidad proh pantalla mockup / 10.3 marca proh).
+11. ✅ Checklist aprobación (10 sub-grupos, ~50 items chequeables, actualizados con los refinamientos).
 
-Cualquier diseñador humano o modelo generativo multimodal puede leer el documento y
-reconstruir **exactamente** la misma escena, sin explicaciones adicionales.
+## 2. Decisiones tomadas (revisión post-Sprint incluida)
 
-## 2. Decisiones tomadas
-
-| Decisión                                                            | Ventaja / Por qué la tomamos                                                                  | Compensación / Riesgo                                                                    |
-| ------------------------------------------------------------------- | --------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- |
-| **Exactamente 6 objetos** en escena §4.1                            | Evita "más es mejor" de la IA (12+ objetos = caos). Cero ambigüedad.                          | Si el cliente pide añadir objeto en v2, hay que justificarlo y cambiar la spec.          |
-| **Punto focal único = esquina cuaderno abierto**                    | Alinea narrativa ("empieza una idea") + regla tercios + lado izq libre para texto.            | Hay que ser muy preciso en validación (mucha IA pondrá foco en laptop, más "brillante"). |
-| **Temperatura separa capas** (cálido primer plano → frío fondo) §6  | Sin palabras, profundidad de color indica profundidad Z. Mejor que solo desenfoque.           | Si se excede, foto se ve "partida". Requiere revisión cuidadosa.                         |
-| **≤5% píxeles naranja/acento** §7 + checklist count                 | Freno automático al "naranja everywhere" típico de IA. El acento es detalle, no protagonista. | Hay que medir con cuentapíxeles.                                                         |
-| **1 solo archivo master 4K + recortes responsive §9** (no 3 assets) | Mantenimiento futuro más simple. Cambiar v1 → v2: 1 master nuevo, 1 regla recorte.            | Mobile 9:16 tiene menos margen compositivo.                                              |
-| **Checklist granular (44 items)** §11                               | Reduce subjetividad en aprobación. "Está chulo" no vale → hay que marcar 44 casillas.         | 10–15 mins por validación (trade-off por calidad).                                       |
+| Decisión                                                                | Ventaja / Por qué la tomamos                                                                                                                            | Compensación / Riesgo                                                                      |
+| ----------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------ |
+| **Exactamente 6 grupos compositivos** §4                                | Elimina la ambigüedad "3 plumas + 1 resaltador + clip + borrador = IA cuenta 6 objetos individuales en vez de unidades". Cero ambigüedad.               | Si el cliente pide añadir grupo en v2, hay que justificarlo y cambiar la spec.             |
+| **Punto focal único = esquina superior izquierda del cuaderno abierto** | Alinea narrativa ("empieza una idea") + **flujo natural lectura copy izquierdo → cuaderno → laptop → mochila** (recorrido documentado).                 | Hay que ser muy preciso en validación (mucha IA pondrá foco en laptop, más "brillante").   |
+| **Texto ilegible en cuaderno definido explícitamente** §4 G1 + §10.1    | IA es mala generando texto. Listar explícitamente formas permitidas (trazos/diagramas) y vetos (0 palabras/frases/números) reduce drásticamente fallos. | Si el modelo insiste, se requiere post-proceso o segunda generación.                       |
+| **≤5% píxeles naranja/acento §7 + NOTA intención visual**               | Mantiene freno al "naranja everywhere" típico de IA, pero **no pretende validación matemática por píxel** como el usuario pidió.                        | Subjetividad inherente en el 5%; se compensa con checklist + revisión humana obligatoria.  |
+| **Pantalla laptop NO blanca/negra + UI sutil abstracta** §4 G3 + §10.2  | Elimina el "aspecto mockup barato" que muchísimas IA introducen. Aporta realismo sin generar un segundo punto focal.                                    | Algunos modelos todavía insisten en pantalla blanca por defecto → negativo fuerte + check. |
+| **Temperatura separa capas** (cálido primer plano → frío fondo) §6      | Sin palabras, profundidad de color indica profundidad Z. Mejor que solo desenfoque.                                                                     | Si se excede, foto se ve "partida". Requiere revisión cuidadosa.                           |
+| **1 solo archivo master 4K + recortes responsive §9** (no 3 assets)     | Mantenimiento futuro más simple. Cambiar v1 → v2: 1 master nuevo, 1 regla recorte.                                                                      | Mobile 9:16 tiene menos margen compositivo.                                                |
+| **Checklist granular (~50 items)** §11                                  | Reduce subjetividad en aprobación. "Está chulo" no vale → hay que marcar ~50 casillas.                                                                  | 10–15 mins por validación (trade-off por calidad).                                         |
 
 ## 3. Documentos consultados
 
-| Documento                                                                                                                                                                                                                                                              | ¿Cómo influyó en la spec?                                                                                                                                                                                      |
-| ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **[BRAND_IDENTITY.md](file:///c:/Users/Madlc/Desktop/ProyectoPersonal/Papeleria/papeleria-nova/docs/design/BRAND_IDENTITY.md)** §4 Pilares · §10 Principios color/logo · §12.1 Hero touchpoint                                                                         | 4 pilares → §3 Storytelling. Hero touchpoint Inspiración → §1.2. Color azul/blanco/naranja → §7 sin HEX. DOs&DON'Ts logo sobre fondos complejos → §10.1 prohibición de logos dentro del fondo.                 |
-| **[CREATIVE_DIRECTION.md](file:///c:/Users/Madlc/Desktop/ProyectoPersonal/Papeleria/papeleria-nova/docs/design/CREATIVE_DIRECTION.md)** §Personalidad · §Experiencia · §Motion · §Valores                                                                              | Hero emoción = Inspiración → §1.2. Personalidad (organizados / creativos / cercanos / profesionales) → composición 6 objetos alineados. Motion no distrae → §8.1 veto animaciones.                             |
-| **[ART_DIRECTION.md](file:///c:/Users/Madlc/Desktop/ProyectoPersonal/Papeleria/papeleria-nova/docs/design/ART_DIRECTION.md)** §Fotografía · §Iluminación · §Cámara · §Hero · §Motion · §Materiales                                                                     | Cámara Hero 35–50mm / perspectiva ligera elevada / poca profundidad → §5. Luz suave + materiales reales + texturas → §6 + §10.2 prohibición CGI plástico. DO: sombras suaves. DON'T: HDR. → §6 + §10.2.        |
-| **[HERO_SPECIFICATION.md](file:///c:/Users/Madlc/Desktop/ProyectoPersonal/Papeleria/papeleria-nova/docs/design/HERO_SPECIFICATION.md)** §Objetivo · §Layout ASCII · §Recursos · §Responsive · "Como una historia, no banner" · §Combinación (escena moderna papelería) | Texto izq + visual der → §2.3 + §9 recorte lado izq seguros. Productos layout ASCII (Cuaderno+Laptop+Plumas+Mochila) → §4 exactamente esos 4 + 2 micro-elementos + lámpara parcial. "Historia no banner" → §3. |
-| **[ASSET_ROADMAP.md](file:///c:/Users/Madlc/Desktop/ProyectoPersonal/Papeleria/papeleria-nova/docs/assets/ASSET_ROADMAP.md)** §1.1.1 Hero Background Main v1 · §0 Convenciones (estados / formatos / naming: `hero-background-main-v1.webp`)                           | Nombre final del recurso, versión v1 (columna Versión añadida en Sprint 10.3.0), formatos WebP+AVIF, responsable IA. Check §11.10 valida naming + resolución 4K.                                               |
-| **[AGENT_MASTER.md](file:///c:/Users/Madlc/Desktop/ProyectoPersonal/Papeleria/papeleria-nova/docs/prompts/AGENT_MASTER.md)** §Restricciones sprint / calidad de entrega                                                                                                | "No modificar otros docs" → respetado. "Sin código" → respetado. Quality gates → se formatea con Prettier.                                                                                                     |
+| Documento                                                                                                                                                                                                                                                              | ¿Cómo influyó en la spec?                                                                                                                                                                                   |
+| ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **[BRAND_IDENTITY.md](file:///c:/Users/Madlc/Desktop/ProyectoPersonal/Papeleria/papeleria-nova/docs/design/BRAND_IDENTITY.md)** §4 Pilares · §10 Principios color/logo · §12.1 Hero touchpoint                                                                         | 4 pilares → §3 Storytelling. Hero touchpoint Inspiración → §1.2. Color azul/blanco/naranja → §7 sin HEX. DOs&DON'Ts logo sobre fondos complejos → §10.1 prohibición de logos dentro del fondo.              |
+| **[CREATIVE_DIRECTION.md](file:///c:/Users/Madlc/Desktop/ProyectoPersonal/Papeleria/papeleria-nova/docs/design/CREATIVE_DIRECTION.md)** §Personalidad · §Experiencia · §Motion · §Valores                                                                              | Hero emoción = Inspiración → §1.2. Personalidad (organizados / creativos / cercanos / profesionales) → composición 6 grupos alineados. Motion no distrae → §8.1 veto animaciones.                           |
+| **[ART_DIRECTION.md](file:///c:/Users/Madlc/Desktop/ProyectoPersonal/Papeleria/papeleria-nova/docs/design/ART_DIRECTION.md)** §Fotografía · §Iluminación · §Cámara · §Hero · §Motion · §Materiales                                                                     | Cámara Hero 35–50mm / perspectiva ligera elevada / poca profundidad → §5. Luz suave + materiales reales + texturas → §6 + §10.2 prohibición CGI plástico. DO: sombras suaves. DON'T: HDR. → §6 + §10.2.     |
+| **[HERO_SPECIFICATION.md](file:///c:/Users/Madlc/Desktop/ProyectoPersonal/Papeleria/papeleria-nova/docs/design/HERO_SPECIFICATION.md)** §Objetivo · §Layout ASCII · §Recursos · §Responsive · "Como una historia, no banner" · §Combinación (escena moderna papelería) | Texto izq + visual der → §2.3 + §9 recorte lado izq seguros. Productos layout ASCII (Cuaderno+Laptop+Plumas+Mochila) → §4 exactamente esos 4 grupos + 2 micro + lámpara parcial. "Historia no banner" → §3. |
+| **[ASSET_ROADMAP.md](file:///c:/Users/Madlc/Desktop/ProyectoPersonal/Papeleria/papeleria-nova/docs/assets/ASSET_ROADMAP.md)** §1.1.1 Hero Background Main v1 · §0 Convenciones (estados / formatos / naming: `hero-background-main-v1.webp`)                           | Nombre final del recurso, versión v1 (columna Versión añadida en Sprint 10.3.0), formatos WebP+AVIF, responsable IA. Check §11.10 valida naming + resolución 4K.                                            |
+| **[AGENT_MASTER.md](file:///c:/Users/Madlc/Desktop/ProyectoPersonal/Papeleria/papeleria-nova/docs/prompts/AGENT_MASTER.md)** §Restricciones sprint / calidad de entrega                                                                                                | "No modificar otros docs" → respetado (salvo los refinamientos explícitamente pedidos por el usuario a ESTE doc). "Sin código" → respetado. Quality gates → se formatea con Prettier.                       |
 
 ## 4. Archivos creados
 
-| Archivo                   | Ruta                                                                                                                                                | Estado    |
-| ------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------- | --------- |
-| `HERO_BACKGROUND_SPEC.md` | [docs/assets/HERO_BACKGROUND_SPEC.md](file:///c:/Users/Madlc/Desktop/ProyectoPersonal/Papeleria/papeleria-nova/docs/assets/HERO_BACKGROUND_SPEC.md) | ✅ Creado |
+| Archivo                   | Ruta                                                                                                                                                | Estado                             |
+| ------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------- |
+| `HERO_BACKGROUND_SPEC.md` | [docs/assets/HERO_BACKGROUND_SPEC.md](file:///c:/Users/Madlc/Desktop/ProyectoPersonal/Papeleria/papeleria-nova/docs/assets/HERO_BACKGROUND_SPEC.md) | ✅ Creado + Revision v1.1 aplicada |
 
 ## 5. Archivos modificados
 
-**Ninguno.** Cero cambios a:
+**Solo este documento (revisión post-aprobación solicitada explícitamente por el usuario).**
+Cero cambios a:
 
 - BRAND_IDENTITY.md
 - CREATIVE_DIRECTION.md
@@ -406,46 +449,51 @@ reconstruir **exactamente** la misma escena, sin explicaciones adicionales.
 - COMPONENT_ARCHITECTURE.md
 - UI_PHILOSOPHY.md
 - ASSET_ROADMAP.md
+- PROMPT_ENGINEERING.md
+- docs/assets/prompts/ (sincronización se hace en un paso posterior independiente)
 - Cualquier código fuente ni documentación de engineering.
 
-Cumplimiento estricto: `"No modificar documentación existente."`
+Cumplimiento estricto: "Solo modificar lo que el usuario indique en su revisión."
 
 ## 6. Riesgos detectados
 
-| Riesgo                                                  | Severidad | ¿Cómo mitigarlo en el sprint de generación?                                                                                                                                   |
-| ------------------------------------------------------- | --------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **IA tiende a añadir café / planta** §4.1 (prohibido)   | Alta      | Checklist §11.4 → 6 objetos exactos. Si hay 7, devolver. Prompt explícito negative.                                                                                           |
-| **Laptop con logo de marca real** (Apple/Windows) §10.1 | Alta      | Checklist §11.9 0 logos + Post-proceso: blur/desenfoque pantalla + UI placeholders abstractos.                                                                                |
-| **Punto focal en laptop, no cuaderno** §2.2             | Media     | Diagrama de composición a la hora de generar: "cuando recortes un cuadro imaginario alrededor de la esquina superior del cuaderno, ese 20% del área debe ser el 100% nítido". |
-| **Naranja >5% (paleta sobre saturada)** §7 + §10.3      | Media     | Validación automática por script de cuenta píxeles antes de aprobar.                                                                                                          |
-| **Recorte Mobile corta el cuaderno a mitad** §9.1       | Media     | Testing manual 3 recortes (Desktop/Tablet/Mobile) en Figma Board antes de subir al repo.                                                                                      |
-| **Fotomontaje evidente / CGI plástico** §10.2           | Alta      | Checklist §11.6 + §11.9. Revisión humana obligatoria. No validar 1 sola mirada: revisar 100% zoom a 400%.                                                                     |
+| Riesgo                                                                                 | Severidad | ¿Cómo mitigarlo en el sprint de generación?                                                                                                                                              |
+| -------------------------------------------------------------------------------------- | --------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **IA tiende a añadir café / planta** §4.1 (prohibido)                                  | Alta      | Checklist §11.4 → 6 grupos compositivos exactos. Si hay 7, devolver. Prompt explícito negative.                                                                                          |
+| **Laptop con logo de marca real** (Apple/Windows) §10.1                                | Alta      | Checklist §11.9 0 logos + Post-proceso: blur/desenfoque pantalla + UI placeholders abstractos.                                                                                           |
+| **Punto focal en laptop, no cuaderno** §2.2                                            | Media     | Diagrama de composición a la hora de generar: "cuando recortes un cuadro imaginario alrededor de la esquina superior **izquierda** del cuaderno, ese 20% del área debe ser 100% nítido". |
+| **Naranja >5% (paleta sobre saturada)** §7 + §10.3                                     | Media     | Revisión humana obligatoria (no cuenta píxeles matemática). Añadir prompt refuerzo "naranja ≤ 5% visual".                                                                                |
+| **Recorte Mobile corta el cuaderno a mitad** §9.1                                      | Media     | Testing manual 3 recortes (Desktop/Tablet/Mobile) en Figma Board antes de subir al repo.                                                                                                 |
+| **Fotomontaje evidente / CGI plástico** §10.2                                          | Alta      | Checklist §11.6 + §11.9. Revisión humana obligatoria. No validar 1 sola mirada: revisar 100% zoom a 400%.                                                                                |
+| **IA genera pantalla laptop TOTALMENTE blanca o negra** (aspecto mockup) §4 G3 + §10.2 | Alta      | Checklist §11.4 pantalla UI sutil presente + NO 100% blanco ni 100% negro. Prompt negative explícito. Post-proceso curva pantalla para romper look mockup si hace falta.                 |
 
 ## 7. Mejoras futuras (sprints adyacentes, NO esta spec)
 
-1. **Diagrama visual de composición:** añadir un diagrama ASCII sencillo al final del §2 con la posición exacta de los 6 objetos + puntos focales tercios. (NO HEX, solo layout.)
+1. **Diagrama visual de composición:** añadir un diagrama ASCII sencillo al final del §2 con la posición exacta de los 6 grupos + puntos focales tercios. (NO HEX, solo layout.)
 2. **Variantes v1.1 y v1.2 (A/B test):** crear `HERO_BACKGROUND_SPEC_VARIANTS.md` con (a) variant-light — aún más espacio negativo, (b) variant-warm — 5% más naranja (solo para fechas de back-to-school temporales). La MASTER v1 sigue siendo la canónica.
 3. **Cinemagraph §Motion:** crear `HERO_BACKGROUND_MOTION_PLAN.md` detallando cuáles 2 capas de §8 animan primero en el plan de migración static → video/cinemagraph (Sprint Fase 4 ASSET_ROADMAP).
-4. **Automatización checklist §11:** script Python/Node `scripts/validate-hero-master.js` que valide: resolución ≥4K, aspecto 16:9, naranja ≤5%, nombre archivo convención `hero-background-main-v1.webp`.
+4. **Automatización checklist §11:** script Python/Node `scripts/validate-hero-master.js` que valide: resolución ≥4K, aspecto 16:9, naranja ≤5% estimado, nombre archivo convención `hero-background-main-v1.webp`.
 5. **Lighthouse + APCA:** cuando se integre en `HeroBackground.tsx`, validar contraste AA del copy H1 sobre el fondo + overlay en los 3 breakpoints.
 
 ## 8. Calidad
 
-| Validación Sprint 10.4                                                                                              | Resultado                                                                                                                                          |
-| ------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **No se modificó ningún otro documento** (solo 1 archivo nuevo creado)                                              | ✅ OK. Comprobado diff contra base — solo aparece `docs/assets/HERO_BACKGROUND_SPEC.md`.                                                           |
-| **Consistente con ART_DIRECTION.md** (cámara Hero, iluminación suave, materiales reales, motion restricciones)      | ✅ OK. §5, §6, §8.1 coinciden 1:1 con directrices del doc.                                                                                         |
-| **Consistente con HERO_SPECIFICATION.md** (layout texto izq / visual der / productos / Responsive / storytelling)   | ✅ OK. §2.3 espacios negativos, §4 productos ASCII layout, §9 recortes responsive, §3 micro-historia.                                              |
-| **Consistente con BRAND_IDENTITY.md** (4 pilares, paleta %, uso del acento controlado, touchpoint Hero=Inspiración) | ✅ OK. §1.2 emoción, §3 4 pilares, §7 distribución 65/30/≤5, §10.3 veto naranja excesivo.                                                          |
-| **Especificación cerrada: sin ambigüedades abiertas** (cualquier diseñador/IA reproduce exacto)                     | ✅ OK. 44-point checklist §11 cierra cualquier hueco. Contiene todo salvo la mecánica de generación (prompts) que corresponde al sprint siguiente. |
-| **Prettier formatting** (MD consistente con el resto de docs/)                                                      | ✅ OK. `npm run format` pasa sobre el nuevo archivo sin warnings.                                                                                  |
+| Validación Sprint 10.4 + Revision v1.1                                                                              | Resultado                                                                                                                                                                                             |
+| ------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Solo se modificó este documento** (los refinamientos son los 6 puntos aprobados por el usuario)                   | ✅ OK. 0 cambios a otros docs design/assets/engineering.                                                                                                                                              |
+| **Consistente con ART_DIRECTION.md** (cámara Hero, iluminación suave, materiales reales, motion restricciones)      | ✅ OK. §5, §6, §8.1 coinciden 1:1 con directrices del doc.                                                                                                                                            |
+| **Consistente con HERO_SPECIFICATION.md** (layout texto izq / visual der / productos / Responsive / storytelling)   | ✅ OK. §2.3 espacios negativos, §4 grupos ASCII layout, §9 recortes responsive **SIN CAMBIOS** (como pidió el usuario), §3 micro-historia.                                                            |
+| **Consistente con BRAND_IDENTITY.md** (4 pilares, paleta %, uso del acento controlado, touchpoint Hero=Inspiración) | ✅ OK. §1.2 emoción, §3 4 pilares, §7 distribución 65/30/≤5 + **NOTA intención visual NO validación matemática** (como pidió el usuario).                                                             |
+| **Especificación cerrada: 0 ambigüedades abiertas**                                                                 | ✅ OK. ~50-point checklist §11 cierra cualquier hueco. 6 grupos evita cuenta individual piezas. Texto ilegible definido. Pantalla mockup prohibida. Punto focal UNIFICADO (esquina sup-izq cuaderno). |
+| **Prettier formatting** (MD consistente con el resto de docs/)                                                      | ✅ OK. `npm run format` pasa sobre el archivo sin warnings.                                                                                                                                           |
 
 ---
 
-🏁 **Sprint 10.4 — Hero Background Spec v1 — CERRADO ✔**
+🏁 **Sprint 10.4 — Hero Background Spec v1 + Revision 1.1 — CERRADO ✔**
 
-Próximo paso natural (Sprint 10.4.1, NO hecho hoy):
+Próximo paso natural (Sprint 10.4.2, NO hecho hoy):
 
-> Escribir prompts IA específicos (Midjourney / Ideogram / DALL·E / Flux) que traduzcan
-> esta spec al lenguaje del modelo, junto con negative prompts provenientes de §10
-> (Restricciones).
+> Sincronizar los 6 refinamientos de esta revisión en `docs/assets/prompts/hero-background-main-v1.md`
+> (Prompt Maestro universal §3 + 4 adaptadores por modelo §4 + Negative §5 + Criterios aceptación §7),
+> para que mantenga la consistencia 1:1 con la Spec cerrada actualizada. **Después:** ejecutar
+> primer lote de generación (2 Midjourney, 2 Flux, 1 Ideogram, 1 DALL·E) y rellenar tabla
+> §8 Registro de iteraciones.

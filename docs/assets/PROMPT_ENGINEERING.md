@@ -458,6 +458,59 @@ reglas comunes para prompts IA. Contiene:
 3. **Tabla "Modelo recomendado por asset family":** añadir una tabla en §4 que diga "Hero → Flux Pro / Ideogram. Productos 45° → DALL·E 4 natural. Iconos → Ideogram. Ilustraciones SVG → Ideogram + post-pro vector." (hoy es implicito).
 4. **Versionado de este mismo documento:** cuando se adopten modelos nuevos (SD 3.5, Midjourney v8, etc.), nova sección §4.5 Adaptador XYZ sin tocar los anteriores.
 
+### 7.5 Pendiente de umbral — **Prompt Library de fragmentos reutilizables**
+
+> **Regla de activación: NO se implementa HOY.**
+>
+> **Crear `docs/assets/PROMPT_LIBRARY.md` ÚNICAMENTE cuando ya existan al menos `10 archivos` dentro
+> de `docs/assets/prompts/*.md` (≈ 10 assets con sus prompts).**
+>
+> **Hasta entonces:** cada prompt file mantiene sus bloques inline (como está hoy en `hero-background-main-v1.md` §5 Negative Prompt).
+>
+> **Motivo de la espera:** sin ≥10 assets es imposible saber qué fragmentos se repiten realmente. Con 3-4 prompts
+> la librería se hace demasiado pequeña y termina generando más overhead que valor.
+
+Cuando se cumpla el umbral, `PROMPT_LIBRARY.md` contendrá **solo fragmentos** y **NUNCA prompts completos**
+(éstos siguen viviendo en `prompts/<asset>.md`). El archivo se estructura por categorías y cada bloque tiene un ID:
+
+```
+# docs/assets/PROMPT_LIBRARY.md  (cuando se active)
+───────────────────────────────────────────────────────────────────
+
+## Negative prompts
+
+· NEGATIVE_COMMON            · §5 PROMPT_ENGINEERING (personas / marcas / clichés /
+                                artefactos / iluminación HDR / composición)
+· NEGATIVE_EDITORIAL        · extra: "no reportaje agresivo, no gritty, no cine oscuro"
+· NEGATIVE_PRODUCT_45       · extra: "no mano sujetando, no reflejo raro, no fondo
+                                complejo" + PNG transparent si espec.
+· NEGATIVE_LOGO             · extra: "no deformado, no sombras internas, no brillos,
+                                no gradientes internos, texto nítido si hay wordmark"
+· NEGATIVE_HERO             · extra: "no barras negras letterbox, no polvo denso,
+                                no vignetting excesivo"
+· NEGATIVE_ICON             · extra: "no fill, solo 1.5px stroke, monochrome, no
+                                gradientes de color"
+
+## Parameter blocks
+
+· PARAMS_COMMON_4K          · aspect 16:9 · res 3840×2160 · WebP+AVIF output
+· PARAMS_STILL_LIFE         · aspect 1:1 · res 2048×2048 · seed random → fija
+· QUALITY_MJ_V7_RAW         · --style raw --stylize 150 --version 7
+· QUALITY_FLUX_DEV          · steps=24 cfg=3.5 euler
+· QUALITY_DALLE_HD_NATURAL  · quality=hd style=natural size=1792x1024
+```
+
+En los prompt files de `prompts/<asset>.md` ya no se copia el bloque inline completo; se escribe:
+
+```
+Negative Prompt seleccionado:
+  NEGATIVE_COMMON + NEGATIVE_HERO
+  (ver fuente exacta en PROMPT_LIBRARY.md §Negative prompts)
+```
+
+Así, cuando haya que ajustar una regla global (ej: añadir `0 iwatch` a NEGATIVE_COMMON),
+**se cambia en 1 solo sitio, no en 30 archivos.**
+
 ## 8. Calidad
 
 | Validación                                                             | Resultado                                                                                               |

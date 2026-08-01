@@ -52,12 +52,16 @@ import HeroEntrance, {
   HERO_MOTION_ACTIONS_ENTRANCE_CLASS,
   HERO_MOTION_BADGE_ENTRANCE_CLASS,
   HERO_MOTION_DESCRIPTION_ENTRANCE_CLASS,
+  HERO_MOTION_DUST_DRIFT_CLASS,
+  HERO_MOTION_HALO_BREATH_CLASS,
   HERO_MOTION_HEADING_ENTRANCE_CLASS,
   HERO_MOTION_PRIMARY_CTA_HOVER_CLASS,
   HERO_MOTION_SCROLL_INDICATOR_ENTRANCE_CLASS,
   HERO_MOTION_SECONDARY_CTA_HOVER_CLASS,
+  HERO_MOTION_WARM_FLUCT_CLASS,
   getHeroMotionPlayStateProperty,
   useHeroMotionPlayState,
+  useHeroParallax,
 } from "@/features/hero/motion";
 
 export interface HomePageProps {
@@ -79,6 +83,11 @@ function HomePage({ className }: HomePageProps) {
   } = useHeroMotionPlayState();
   const heroMotionPlay = heroImageLoaded && heroMotionVisiblePlay;
   const heroMotionStyle = getHeroMotionPlayStateProperty(heroMotionPlay);
+
+  const { styleHalo, styleWarm, styleDust } = useHeroParallax(
+    heroMotionRef as React.RefObject<HTMLElement | null>,
+    heroMotionVisiblePlay,
+  );
 
   const heroMotionHoldClass = !heroImageLoaded
     ? "[&_[data-hero-motion]]:!opacity-0 [&_[data-hero-motion]]:!translate-y-6 [&_[data-hero-motion]]:!animate-paused"
@@ -122,15 +131,35 @@ function HomePage({ className }: HomePageProps) {
             <HeroOverlay intensity="i08" variant="editorial-scene" />
             <div
               aria-hidden="true"
-              className={cn("absolute inset-0 z-[1]", HERO_DEPTH_HALO_FOCAL_CLASS)}
+              style={styleHalo}
+              className={cn(
+                "absolute inset-0 z-[1]",
+                HERO_DEPTH_HALO_FOCAL_CLASS,
+                HERO_MOTION_HALO_BREATH_CLASS,
+                heroMotionReduced ? "!animation-none !transition-none" : "",
+              )}
             />
             <div
               aria-hidden="true"
-              className={cn("absolute inset-0 z-[2]", HERO_DEPTH_WARM_LIGHT_CLASS)}
+              style={styleWarm}
+              className={cn(
+                "absolute inset-0 z-[2]",
+                HERO_DEPTH_WARM_LIGHT_CLASS,
+                HERO_MOTION_WARM_FLUCT_CLASS,
+                heroMotionReduced ? "!animation-none !transition-none" : "",
+              )}
             />
             <div
               aria-hidden="true"
-              className={cn("absolute inset-0 z-[3]", HERO_DEPTH_DUST_CLASS)}
+              style={styleDust}
+              className={cn(
+                "absolute inset-0 z-[3]",
+                HERO_DEPTH_DUST_CLASS,
+                HERO_MOTION_DUST_DRIFT_CLASS,
+                heroMotionReduced
+                  ? "!animation-none !transform-none !translate-x-0 !translate-y-0 !transition-none"
+                  : "",
+              )}
             />
           </>
         }

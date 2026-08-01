@@ -56,3 +56,50 @@ export const HERO_MOTION_ENTRANCE_ANIMATION_NAME = {
 } as const;
 
 export const HERO_MOTION_SCROLL_PULSE_ANIMATION_NAME = "hero-scroll-pulse";
+
+/* =====================================================================
+ * AMBIENT MOTION · Sprint 10.7.2
+ *
+ * Principio: el usuario debe sentir la escena viva, pero nunca notar
+ * las animaciones conscientemente.
+ *
+ * Solamente opacity y transform: translate3d() → compositor GPU.
+ * ===================================================================== */
+
+export const HERO_MOTION_AMBIENT_ANIMATION_NAME = {
+  halo: "hero-ambient-halo",
+  warm: "hero-ambient-warm",
+  dust: "hero-ambient-dust",
+} as const;
+
+/** 1. Halo Breathing — solo opacity · 0.95 ↔ 1.05 · 10s ease-in-out loop */
+export const HERO_MOTION_HALO_BREATH_DURATION_MS = 10_000;
+export const HERO_MOTION_HALO_BREATH_OPACITY_MIN = 0.95;
+export const HERO_MOTION_HALO_BREATH_OPACITY_MAX = 1.05;
+export const HERO_MOTION_HALO_BREATH_EASING = "ease-in-out";
+export const HERO_MOTION_HALO_BREATH_ITERATION = "infinite";
+
+/** 2. Warm Light Fluctuation — solo opacity · 0.92 ↔ 1 · 12s ease-in-out loop */
+export const HERO_MOTION_WARM_FLUCT_DURATION_MS = 12_000;
+export const HERO_MOTION_WARM_FLUCT_OPACITY_MIN = 0.92;
+export const HERO_MOTION_WARM_FLUCT_OPACITY_MAX = 1;
+export const HERO_MOTION_WARM_FLUCT_EASING = "ease-in-out";
+export const HERO_MOTION_WARM_FLUCT_ITERATION = "infinite";
+
+/**
+ * 3. Dust Drift — diagonal ↖ (arriba-izquierda).
+ *    Máximo 12 px · 38s · linear · alternate → nunca reinicio evidente.
+ *    ↖ = translate3d(-12px, -8.5px, 0)  (ratio áureo visual 12 / 8.5 ≈ 1.41)
+ */
+export const HERO_MOTION_DUST_DRIFT_DURATION_MS = 38_000;
+export const HERO_MOTION_DUST_DRIFT_TRANSLATE_X_PX = -12;
+export const HERO_MOTION_DUST_DRIFT_TRANSLATE_Y_PX = -8.5;
+export const HERO_MOTION_DUST_DRIFT_EASING = "linear";
+export const HERO_MOTION_DUST_DRIFT_DIRECTION = "alternate";
+export const HERO_MOTION_DUST_DRIFT_ITERATION = "infinite";
+
+/** 4. CTA Primary — Glow suave adicional (solo botón azul) */
+export const HERO_MOTION_CTA_PRIMARY_GLOW_COLOR_RGBA = "rgba(30,58,138,0.22)";
+export const HERO_MOTION_CTA_PRIMARY_GLOW_SPREAD_PX = 0;
+export const HERO_MOTION_CTA_PRIMARY_GLOW_BLUR_PX = 28;
+export const HERO_MOTION_CTA_PRIMARY_GLOW_OFFSET_Y_PX = 10;

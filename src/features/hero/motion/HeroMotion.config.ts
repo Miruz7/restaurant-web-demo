@@ -59,4 +59,27 @@ export const HERO_MOTION_SECONDARY_CTA_HOVER_CLASS = [
 
 export const HERO_MOTION_CTA_HOVER_SHARED_CLASS = ["hero-motion-cta-primary"].join(" ");
 
+/* =====================================================================
+ * AMBIENT MOTION · Sprint 10.7.2
+ *
+ * Clases inyectables additive a los 3 slots depth (Halo · Warm · Dust).
+ * NO tocan colores, NO tocan opacidad base, NO tocan blending mode.
+ * Solo animan opacity / translate3d() sobre los valores ya existentes.
+ * ===================================================================== */
+
+export const HERO_MOTION_HALO_BREATH_CLASS = [
+  "hero-motion-ambient-halo",
+  '[data-hero-motion="ambient-halo"]',
+].join(" ");
+
+export const HERO_MOTION_WARM_FLUCT_CLASS = [
+  "hero-motion-ambient-warm",
+  '[data-hero-motion="ambient-warm"]',
+].join(" ");
+
+export const HERO_MOTION_DUST_DRIFT_CLASS = [
+  "hero-motion-ambient-dust",
+  '[data-hero-motion="ambient-dust"]',
+].join(" ");
+
 export const HERO_MOTION_REDUCED_MOTION_DISABLE_CLASS = "";

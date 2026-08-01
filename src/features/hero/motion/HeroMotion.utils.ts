@@ -6,10 +6,17 @@
  */
 
 import {
+  HERO_MOTION_AMBIENT_ANIMATION_NAME,
+  HERO_MOTION_DUST_DRIFT_TRANSLATE_X_PX,
+  HERO_MOTION_DUST_DRIFT_TRANSLATE_Y_PX,
   HERO_MOTION_ENTRANCE_ANIMATION_NAME,
+  HERO_MOTION_HALO_BREATH_OPACITY_MAX,
+  HERO_MOTION_HALO_BREATH_OPACITY_MIN,
   HERO_MOTION_SCROLL_PULSE_ANIMATION_NAME,
-  HERO_MOTION_TRANSFORM_TRANSLATE_Y_START_PX,
   HERO_MOTION_SCROLL_PULSE_TRANSLATE_Y_PX,
+  HERO_MOTION_TRANSFORM_TRANSLATE_Y_START_PX,
+  HERO_MOTION_WARM_FLUCT_OPACITY_MAX,
+  HERO_MOTION_WARM_FLUCT_OPACITY_MIN,
 } from "./HeroMotion.constants";
 
 export const buildHeroEntranceKeyframesCss = (): string => {
@@ -30,6 +37,18 @@ export const buildHeroEntranceKeyframesCss = (): string => {
 export const buildHeroScrollPulseKeyframesCss = (): string => {
   const bounce = `${HERO_MOTION_SCROLL_PULSE_TRANSLATE_Y_PX}px`;
   return `@keyframes ${HERO_MOTION_SCROLL_PULSE_ANIMATION_NAME}{0%{opacity:.45;transform:translate3d(0,0,0)}40%{opacity:.9;transform:translate3d(0,${bounce},0)}100%{opacity:.45;transform:translate3d(0,0,0)}}`;
+};
+
+export const buildHeroAmbientKeyframesCss = (): string => {
+  const haloKeyframes = `@keyframes ${HERO_MOTION_AMBIENT_ANIMATION_NAME.halo}{0%{opacity:${HERO_MOTION_HALO_BREATH_OPACITY_MIN}}50%{opacity:${HERO_MOTION_HALO_BREATH_OPACITY_MAX}}100%{opacity:${HERO_MOTION_HALO_BREATH_OPACITY_MIN}}}`;
+
+  const warmKeyframes = `@keyframes ${HERO_MOTION_AMBIENT_ANIMATION_NAME.warm}{0%{opacity:${HERO_MOTION_WARM_FLUCT_OPACITY_MIN}}50%{opacity:${HERO_MOTION_WARM_FLUCT_OPACITY_MAX}}100%{opacity:${HERO_MOTION_WARM_FLUCT_OPACITY_MIN}}}`;
+
+  const dustTx = `${HERO_MOTION_DUST_DRIFT_TRANSLATE_X_PX}px`;
+  const dustTy = `${HERO_MOTION_DUST_DRIFT_TRANSLATE_Y_PX}px`;
+  const dustKeyframes = `@keyframes ${HERO_MOTION_AMBIENT_ANIMATION_NAME.dust}{0%{transform:translate3d(0,0,0)}100%{transform:translate3d(${dustTx},${dustTy},0)}}`;
+
+  return [haloKeyframes, warmKeyframes, dustKeyframes].join("\n");
 };
 
 export const getHeroMotionPlayStateProperty = (

@@ -6,7 +6,7 @@
  * usa slots explícitos para mantener la arquitectura preparada.
  */
 
-import type { ReactNode } from "react";
+import type { CSSProperties, ReactNode } from "react";
 import type { HeroHeight } from "./Hero.config";
 
 export interface HeroProps {
@@ -33,4 +33,15 @@ export interface HeroProps {
 
   /** Clase extendida sobre el landmark <section>. */
   readonly className?: string;
+
+  /** Inline style: Hero aguanta ref + style para Motion / IO / a11y. */
+  readonly style?: CSSProperties & Record<string, unknown>;
+
+  /** Ref + props extendidas sin children (children via slots). */
+  readonly tabIndex?: number;
+  readonly role?: React.AriaRole;
+  readonly ["aria-label"]?: string;
+  readonly ["aria-labelledby"]?: string;
+  readonly ["data-hero"]?: string;
+  readonly ref?: React.Ref<HTMLElement>;
 }

@@ -116,11 +116,11 @@
 
 html {
   scroll-behavior: smooth;
-  /* scroll-padding-top: respeta altura del header fixed al hacer anchor scroll
-     Reutiliza --nova-header-height definido dinámicamente por MainLayout. */
   scroll-padding-top: calc(var(--nova-header-height, 80px) + 16px);
   -webkit-text-size-adjust: 100%;
   text-size-adjust: 100%;
+  background-color: var(--color-hero-warm-base, #151311);
+  color-scheme: dark;
 }
 
 html,
@@ -130,9 +130,14 @@ body,
   min-height: 100%;
 }
 
+#root {
+  background-color: var(--color-hero-warm-base, #151311);
+}
+
 body {
-  /* Tipografía base = familia sans-semántica desde tokens (no hardcodeada).
-     El fallback a system-ui evita FOIT si las fuentes aún no cargan. */
+  background-color: var(--color-hero-warm-base, #151311);
+  color: var(--color-primary);
+  overflow-x: hidden;
   font-family:
     var(--font-family-sans),
     system-ui,
@@ -140,9 +145,6 @@ body {
     sans-serif;
   font-feature-settings: "cv11", "ss01";
   line-height: 1.6;
-  color: var(--color-primary, #111);
-  background-color: var(--color-secondary, #fff);
-  overflow-x: hidden;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;

@@ -19,6 +19,8 @@
 
 import { Container } from "@/components/ui";
 import { cn } from "@/lib/cn";
+import type { ElementRef, HTMLAttributes } from "react";
+import { forwardRef } from "react";
 import {
   DEFAULT_HERO_HEIGHT,
   DEFAULT_HERO_ID,
@@ -32,22 +34,32 @@ import {
 } from "./Hero.config";
 import type { HeroProps } from "./Hero.types";
 
-function Hero({
-  id = DEFAULT_HERO_ID,
-  height = DEFAULT_HERO_HEIGHT,
-  background,
-  overlay,
-  content,
-  visual,
-  scrollIndicator,
-  className,
-}: HeroProps) {
+type HeroElement = ElementRef<"section">;
+
+const Hero = forwardRef<HeroElement, HeroProps>(function Hero(
+  {
+    id = DEFAULT_HERO_ID,
+    height = DEFAULT_HERO_HEIGHT,
+    background,
+    overlay,
+    content,
+    visual,
+    scrollIndicator,
+    className,
+    style,
+    ...restSectionProps
+  },
+  ref,
+) {
   const hasVisual = Boolean(visual);
   return (
     <section
+      ref={ref}
       id={id}
       className={getHeroClasses({ height, className })}
+      style={style}
       aria-labelledby={`${id}-heading`}
+      {...(restSectionProps as HTMLAttributes<HTMLElement>)}
     >
       {/* 1) BACKGROUND: capa inferior absoluta (z -2) */}
       {background ? (
@@ -81,6 +93,6 @@ function Hero({
       ) : null}
     </section>
   );
-}
+});
 
 export default Hero;

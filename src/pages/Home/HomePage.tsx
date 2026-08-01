@@ -22,6 +22,7 @@
 import { Button, Text } from "@/components/ui";
 import { HERO_DATA } from "@/data";
 import { cn } from "@/lib/cn";
+import { useCallback, useState } from "react";
 import {
   DEFAULT_HERO_ID,
   HERO_LIGHT_BADGE_CLASS,
@@ -47,6 +48,17 @@ import {
 } from "@/features/hero";
 
 import HERO_BACKGROUND_V1 from "@/assets/images/hero/hero-background-main-v1.webp.png";
+import HeroEntrance, {
+  HERO_MOTION_ACTIONS_ENTRANCE_CLASS,
+  HERO_MOTION_BADGE_ENTRANCE_CLASS,
+  HERO_MOTION_DESCRIPTION_ENTRANCE_CLASS,
+  HERO_MOTION_HEADING_ENTRANCE_CLASS,
+  HERO_MOTION_PRIMARY_CTA_HOVER_CLASS,
+  HERO_MOTION_SCROLL_INDICATOR_ENTRANCE_CLASS,
+  HERO_MOTION_SECONDARY_CTA_HOVER_CLASS,
+  getHeroMotionPlayStateProperty,
+  useHeroMotionPlayState,
+} from "@/features/hero/motion";
 
 export interface HomePageProps {
   readonly className?: string;
@@ -55,12 +67,35 @@ export interface HomePageProps {
 const HERO_HEADING_ID = `${DEFAULT_HERO_ID}-heading`;
 
 function HomePage({ className }: HomePageProps) {
+  const [heroImageLoaded, setHeroImageLoaded] = useState<boolean>(false);
+  const handleHeroImageLoad = useCallback<React.ReactEventHandler<HTMLImageElement>>(() => {
+    setHeroImageLoaded(true);
+  }, []);
+
+  const {
+    ref: heroMotionRef,
+    play: heroMotionVisiblePlay,
+    reduced: heroMotionReduced,
+  } = useHeroMotionPlayState();
+  const heroMotionPlay = heroImageLoaded && heroMotionVisiblePlay;
+  const heroMotionStyle = getHeroMotionPlayStateProperty(heroMotionPlay);
+
+  const heroMotionHoldClass = !heroImageLoaded
+    ? "[&_[data-hero-motion]]:!opacity-0 [&_[data-hero-motion]]:!translate-y-6 [&_[data-hero-motion]]:!animate-paused"
+    : "";
+
   return (
     <div className={cn("", className)}>
+      <HeroEntrance />
       <Hero
         id={DEFAULT_HERO_ID}
         height="lg"
-        className="!text-white"
+        className={cn(
+          "!text-white !bg-[color:var(--color-hero-warm-base,#151311)]",
+          heroMotionHoldClass,
+        )}
+        ref={heroMotionRef as React.RefObject<HTMLElement>}
+        style={heroMotionStyle}
         background={
           <HeroBackground tone="editorial">
             <img
@@ -73,6 +108,12 @@ function HomePage({ className }: HomePageProps) {
               width={1920}
               height={1080}
               draggable={false}
+              onLoad={handleHeroImageLoad}
+              className={cn(
+                "opacity-0",
+                "transition-opacity duration-[1000ms] ease-out",
+                heroImageLoaded && "!opacity-100",
+              )}
             />
           </HeroBackground>
         }
@@ -96,15 +137,35 @@ function HomePage({ className }: HomePageProps) {
         scrollIndicator={
           <ScrollIndicator
             label={HERO_DATA.scrollIndicatorLabel}
-            className={HERO_LIGHT_SCROLL_INDICATOR_CLASS}
+            className={cn(
+              HERO_LIGHT_SCROLL_INDICATOR_CLASS,
+              HERO_MOTION_SCROLL_INDICATOR_ENTRANCE_CLASS,
+              heroMotionReduced ? "!animation-none !transition-none" : "",
+            )}
           />
         }
         content={
           <HeroContent
             headingId={HERO_HEADING_ID}
-            badgeClassName={HERO_LIGHT_BADGE_CLASS}
-            headingClassName={HERO_LIGHT_HEADING_CLASS}
-            descriptionClassName={HERO_LIGHT_DESCRIPTION_CLASS}
+            badgeClassName={cn(
+              HERO_LIGHT_BADGE_CLASS,
+              HERO_MOTION_BADGE_ENTRANCE_CLASS,
+              heroMotionReduced ? "!animation-none !transition-none" : "",
+            )}
+            headingClassName={cn(
+              HERO_LIGHT_HEADING_CLASS,
+              HERO_MOTION_HEADING_ENTRANCE_CLASS,
+              heroMotionReduced ? "!animation-none !transition-none" : "",
+            )}
+            descriptionClassName={cn(
+              HERO_LIGHT_DESCRIPTION_CLASS,
+              HERO_MOTION_DESCRIPTION_ENTRANCE_CLASS,
+              heroMotionReduced ? "!animation-none !transition-none" : "",
+            )}
+            actionsClassName={cn(
+              HERO_MOTION_ACTIONS_ENTRANCE_CLASS,
+              heroMotionReduced ? "!animation-none !transition-none" : "",
+            )}
             badge={
               <Text size="xs" weight="semibold" className={HERO_LIGHT_TEXT_CLASS}>
                 {HERO_DATA.badge}
@@ -114,10 +175,24 @@ function HomePage({ className }: HomePageProps) {
             description={HERO_DATA.description}
             actions={
               <CTAGroup>
-                <Button variant="primary" size="lg" className={HERO_LIGHT_BUTTON_PRIMARY_CLASS}>
+                <Button
+                  variant="primary"
+                  size="lg"
+                  className={cn(
+                    HERO_LIGHT_BUTTON_PRIMARY_CLASS,
+                    HERO_MOTION_PRIMARY_CTA_HOVER_CLASS,
+                  )}
+                >
                   {HERO_DATA.primaryCTA.label}
                 </Button>
-                <Button variant="secondary" size="lg" className={HERO_LIGHT_BUTTON_SECONDARY_CLASS}>
+                <Button
+                  variant="secondary"
+                  size="lg"
+                  className={cn(
+                    HERO_LIGHT_BUTTON_SECONDARY_CLASS,
+                    HERO_MOTION_SECONDARY_CTA_HOVER_CLASS,
+                  )}
+                >
                   {HERO_DATA.secondaryCTA.label}
                 </Button>
               </CTAGroup>

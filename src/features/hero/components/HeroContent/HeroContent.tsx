@@ -35,30 +35,47 @@ function HeroContent({
   actions,
   metrics,
   className,
+  badgeClassName,
+  headingClassName,
+  descriptionClassName,
+  actionsClassName,
+  metricsClassName,
 }: HeroContentProps) {
   return (
     <div className={getHeroContentStackClasses(className)}>
       {badge ? (
-        <div className={HERO_CONTENT_BADGE_CLASS} role="status" aria-label="Categoría">
+        <div
+          className={cn(HERO_CONTENT_BADGE_CLASS, badgeClassName)}
+          role="status"
+          aria-label="Categoría"
+        >
           {badge}
         </div>
       ) : null}
 
       {/* H1 del Hero. Clases DS: HEADING_VARIANTS[1] + Hero override. */}
-      <h1 id={headingId} className={cn(HEADING_VARIANTS[1], HERO_CONTENT_HEADING_CLASS)}>
+      <h1
+        id={headingId}
+        className={cn(HEADING_VARIANTS[1], HERO_CONTENT_HEADING_CLASS, headingClassName)}
+      >
         {heading}
       </h1>
 
       {description ? (
-        <Text size="lg" className={HERO_CONTENT_DESCRIPTION_CLASS}>
+        <Text size="lg" className={cn(HERO_CONTENT_DESCRIPTION_CLASS, descriptionClassName)}>
           {description}
         </Text>
       ) : null}
 
-      {actions ? <div className="pt-8 md:pt-16 w-full">{actions}</div> : null}
+      {actions ? (
+        <div className={cn("pt-8 md:pt-16 w-full", actionsClassName)}>{actions}</div>
+      ) : null}
 
       {metrics ? (
-        <div aria-label="Indicadores y métricas" className="w-full pt-8 md:pt-16">
+        <div
+          aria-label="Indicadores y métricas"
+          className={cn("w-full pt-8 md:pt-16", metricsClassName)}
+        >
           {metrics}
         </div>
       ) : null}

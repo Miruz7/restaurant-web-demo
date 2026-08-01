@@ -18,6 +18,9 @@
   --color-warning: var(--color-warning);
   --color-info: var(--color-info);
   --color-success: var(--color-success);
+  --color-brand-navy: var(--color-brand-navy);
+  --color-brand-navy-hover: var(--color-brand-navy-hover);
+  --color-brand-navy-active: var(--color-brand-navy-active);
 
   --font-sans: var(--font-family-sans);
   --font-heading: var(--font-family-heading);
@@ -67,7 +70,16 @@
   --breakpoint-3840: var(--breakpoint-3840);
 
   --opacity-0: var(--opacity-0);
+  --opacity-5: var(--opacity-5);
+  --opacity-8: var(--opacity-8);
+  --opacity-10: var(--opacity-10);
+  --opacity-15: var(--opacity-15);
+  --opacity-20: var(--opacity-20);
   --opacity-25: var(--opacity-25);
+  --opacity-30: var(--opacity-30);
+  --opacity-32: var(--opacity-32);
+  --opacity-35: var(--opacity-35);
+  --opacity-40: var(--opacity-40);
   --opacity-50: var(--opacity-50);
   --opacity-75: var(--opacity-75);
   --opacity-100: var(--opacity-100);

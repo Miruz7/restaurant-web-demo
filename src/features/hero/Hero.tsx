@@ -24,6 +24,7 @@ import {
   DEFAULT_HERO_ID,
   HERO_GRID_CLASS,
   HERO_CONTENT_COL_CLASS,
+  HERO_CONTENT_COL_WIDE_CLASS,
   HERO_INNER_PADDING_CLASS,
   HERO_VISUAL_COL_CLASS,
   getHeroClasses,
@@ -41,6 +42,7 @@ function Hero({
   scrollIndicator,
   className,
 }: HeroProps) {
+  const hasVisual = Boolean(visual);
   return (
     <section
       id={id}
@@ -64,8 +66,10 @@ function Hero({
       {/* 3) CONTENIDO PRINCIPAL: grid + Container centrado (z 10) */}
       <Container fullWidth className={cn(HERO_INNER_PADDING_CLASS, getHeroInnerWrapperClasses())}>
         <div className={HERO_GRID_CLASS}>
-          <div className={HERO_CONTENT_COL_CLASS}>{content ?? null}</div>
-          <div className={HERO_VISUAL_COL_CLASS}>{visual ?? null}</div>
+          <div className={cn(hasVisual ? HERO_CONTENT_COL_CLASS : HERO_CONTENT_COL_WIDE_CLASS)}>
+            {content ?? null}
+          </div>
+          {hasVisual ? <div className={HERO_VISUAL_COL_CLASS}>{visual}</div> : null}
         </div>
       </Container>
 

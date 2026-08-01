@@ -10,8 +10,8 @@ import { cn } from "@/lib/cn";
 
 /** Clases del bloque Badge (tag category). */
 export const HERO_CONTENT_BADGE_CLASS = [
-  "inline-flex items-center gap-8 rounded-full",
-  "border border-primary/10 bg-primary/5 px-16 py-6",
+  "inline-flex h-28 items-center gap-8 rounded-full",
+  "border border-primary/10 bg-primary/5 px-20 py-0",
   "text-xs font-medium tracking-wide uppercase text-primary/80",
 ].join(" ");
 
@@ -22,7 +22,7 @@ export const HERO_CONTENT_STACK_CLASS =
 /** Heading H1 estilo display-Hero. Clases extendidas sobre las defaults de HEADING_VARIANTS. */
 export const HERO_CONTENT_HEADING_CLASS = [
   "text-balance",
-  "leading-[1.05] tracking-tight",
+  "leading-[1.02] tracking-tight",
   "font-heading",
 ].join(" ");
 

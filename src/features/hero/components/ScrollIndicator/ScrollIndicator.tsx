@@ -30,7 +30,7 @@ function ScrollIndicator({
       className={getScrollIndicatorClasses(className)}
       {...rest}
     >
-      <span className={SCROLL_INDICATOR_ICON_CLASS} aria-hidden="true" />
+      <span className={SCROLL_INDICATOR_ICON_CLASS} aria-hidden="true" data-scroll-icon />
       <span className={SCROLL_INDICATOR_LABEL_CLASS}>{label}</span>
     </button>
   );

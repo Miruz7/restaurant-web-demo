@@ -46,4 +46,19 @@ export interface HeroContentProps {
 
   /** Clase extendida sobre el stack flex. */
   readonly className?: string;
+
+  /** Clase extendida sobre el wrapper del badge (opcional, Sprint 10.6+). */
+  readonly badgeClassName?: string;
+
+  /** Clase extendida sobre el <h1> (opcional, Sprint 10.6+). */
+  readonly headingClassName?: string;
+
+  /** Clase extendida sobre el <Text> description (opcional, Sprint 10.6+). */
+  readonly descriptionClassName?: string;
+
+  /** Clase extendida sobre el wrapper actions (opcional). */
+  readonly actionsClassName?: string;
+
+  /** Clase extendida sobre el wrapper metrics (opcional). */
+  readonly metricsClassName?: string;
 }

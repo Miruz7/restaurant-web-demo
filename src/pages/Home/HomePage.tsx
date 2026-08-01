@@ -63,6 +63,7 @@ import HeroEntrance, {
   useHeroMotionPlayState,
   useHeroParallax,
 } from "@/features/hero/motion";
+import FeaturedCategories, { DEFAULT_FEATURED_CATEGORIES_ID } from "@/features/featuredCategories";
 
 export interface HomePageProps {
   readonly className?: string;
@@ -74,6 +75,15 @@ function HomePage({ className }: HomePageProps) {
   const [heroImageLoaded, setHeroImageLoaded] = useState<boolean>(false);
   const handleHeroImageLoad = useCallback<React.ReactEventHandler<HTMLImageElement>>(() => {
     setHeroImageLoaded(true);
+  }, []);
+
+  const handleScrollToFeatured = useCallback<React.MouseEventHandler<HTMLButtonElement>>(() => {
+    if (typeof document === "undefined" || typeof window === "undefined") return;
+    const sectionEl = document.getElementById(DEFAULT_FEATURED_CATEGORIES_ID);
+    if (!sectionEl) return;
+    const sectionTop = sectionEl.getBoundingClientRect().top + window.scrollY;
+    const targetY = Math.max(0, sectionTop - 64);
+    window.scrollTo({ top: targetY, left: 0, behavior: "smooth" });
   }, []);
 
   const {
@@ -171,6 +181,7 @@ function HomePage({ className }: HomePageProps) {
               HERO_MOTION_SCROLL_INDICATOR_ENTRANCE_CLASS,
               heroMotionReduced ? "!animation-none !transition-none" : "",
             )}
+            onClick={handleScrollToFeatured}
           />
         }
         content={
@@ -229,6 +240,8 @@ function HomePage({ className }: HomePageProps) {
           />
         }
       />
+
+      <FeaturedCategories />
     </div>
   );
 }

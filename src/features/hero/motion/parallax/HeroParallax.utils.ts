@@ -25,8 +25,7 @@ export const clampRange = (value: number, min: number, max: number): number =>
   Math.max(min, Math.min(max, value));
 
 /** Linear interpolation standard. a → b, alpha ∈ [0, 1]. */
-export const lerp = (a: number, b: number, alpha: number): number =>
-  a + (b - a) * alpha;
+export const lerp = (a: number, b: number, alpha: number): number => a + (b - a) * alpha;
 
 /** 2D lerp (composición vectorial trivial). */
 export interface Point2D {
@@ -66,11 +65,7 @@ export const normalizePointerToMinus1Plus1 = (
  * Escalar espacio [-1,1] a píxeles máximo específico por capa.
  * Retorna valores en píxel.
  */
-export const scaleToMaxPixels = (
-  normalized: Point2D,
-  maxX: number,
-  maxY: number,
-): Point2D => ({
+export const scaleToMaxPixels = (normalized: Point2D, maxX: number, maxY: number): Point2D => ({
   x: normalized.x * maxX,
   y: normalized.y * maxY,
 });

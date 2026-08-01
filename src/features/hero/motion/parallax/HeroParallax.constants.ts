@@ -35,5 +35,4 @@ export const HERO_PARALLAX_POINTER_MEDIA_QUERY = "(pointer: fine)";
 
 /** prefers-reduced-motion — SIEMPRE respetado, incluso si el usuario
  *  tiene pointer: fine y está en desktop. */
-export const HERO_PARALLAX_REDUCED_MOTION_MEDIA_QUERY =
-  "(prefers-reduced-motion: reduce)";
+export const HERO_PARALLAX_REDUCED_MOTION_MEDIA_QUERY = "(prefers-reduced-motion: reduce)";

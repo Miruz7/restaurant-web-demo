@@ -48,7 +48,7 @@ export const DEFAULT_HERO_HEIGHT: HeroHeight = "lg";
 export const HERO_HEADER_COMPENSATION_CLASS = "pt-[calc(var(--nova-header-height,0px)+32px)]";
 
 /** Padding base horizontal + vertical bottom de la sección. */
-export const HERO_INNER_PADDING_CLASS = "pb-64 md:pb-80 lg:pb-96";
+export const HERO_INNER_PADDING_CLASS = "pb-[80px] md:pb-[96px] lg:pb-[120px] xl:pb-[144px]";
 
 /**
  * Espacio negativo izquierdo (padding-left) para columnas CONTENT.
@@ -73,15 +73,16 @@ export const HERO_CONTENT_NEGATIVE_SPACE_CLASS = [
 
 /** Clase del wrapper Grid interno que reparte Content (izq) + Visual (der). */
 export const HERO_GRID_CLASS = [
-  "grid w-full gap-40",
+  "grid w-full gap-32",
   "md:gap-48",
   "lg:gap-64 lg:grid-cols-12",
 ].join(" ");
 
 /** Clases para el slot CONTENT (columnas izquierda en desktop). */
 export const HERO_CONTENT_COL_CLASS = [
-  "order-2 flex flex-col items-start gap-24",
-  "md:gap-32",
+  "order-2 flex flex-col items-start gap-20",
+  "md:gap-28",
+  "lg:gap-32",
   "lg:order-1 lg:col-span-6 xl:col-span-7",
   HERO_CONTENT_NEGATIVE_SPACE_CLASS,
   "translate-x-3 translate-y-4",
@@ -96,8 +97,9 @@ export const HERO_CONTENT_COL_CLASS = [
  * +12 px der · +16 px abajo = aire sup-izq editorial Apple/Linear.
  */
 export const HERO_CONTENT_COL_WIDE_CLASS = [
-  "order-2 flex flex-col items-start gap-24",
-  "md:gap-32",
+  "order-2 flex flex-col items-start gap-20",
+  "md:gap-28",
+  "lg:gap-32",
   "lg:order-1 lg:col-span-10 xl:col-span-9 2xl:col-span-8",
   HERO_CONTENT_NEGATIVE_SPACE_CLASS,
   "translate-x-3 translate-y-4",
@@ -199,11 +201,18 @@ export const HERO_LIGHT_TEXT_CLASS =
  * Button variant PRIMARY → AZUL NOVA MARCA (brand-navy).
  * Sprint 10.6.1: sombra aumentada 2 puntos para compensar overlay más claro.
  * Legibilidad del CTA por jerarquía, no por oscurecer foto.
+ * Sprint 12.6.C Microinteractions:
+ *   - Hover: translateY(-1px) — levantamiento sutil.
+ *   - Active: scale(0.98) — press táctil.
+ *   - Transition: 180 ms cubic-bezier(.22,1,.36,1) (igual Storytelling easing).
  */
 export const HERO_LIGHT_BUTTON_PRIMARY_CLASS = [
   "!bg-brand-navy !text-white",
   "!hover:bg-brand-navy-hover !active:bg-brand-navy-active",
+  "hover:!-translate-y-[1px] active:!scale-[0.98]",
   "!shadow-[0_10px_34px_rgba(30,58,138,0.44)]",
+  "hover:!shadow-[0_14px_40px_rgba(30,58,138,0.50)]",
+  "!transition-[transform,background-color,box-shadow,color,opacity] !duration-[180ms] !ease-[cubic-bezier(0.22,1,0.36,1)]",
   "focus-visible:!ring-white focus-visible:!ring-offset-black/40",
 ].join(" ");
 
@@ -211,12 +220,19 @@ export const HERO_LIGHT_BUTTON_PRIMARY_CLASS = [
  * Button variant SECONDARY → glass morphism estilo Nova Hero FINA.
  * Estado normal: transparencia EXTREMADAMENTE sutil. Hover: sube a ~15%.
  * Borde muy fino (12%) para no competir con la foto.
+ * Sprint 12.6.C Microinteractions:
+ *   - Hover: translateY(-1px) levantamiento sutil.
+ *   - Active: scale(0.98) press feedback.
+ *   - Transition 180 ms cubic-bezier consistente.
  */
 export const HERO_LIGHT_BUTTON_SECONDARY_CLASS = [
   "!bg-white/6 !text-white !border-white/12",
   "!backdrop-blur-[14px]",
   "!hover:bg-white/15 !active:bg-white/25",
+  "hover:!-translate-y-[1px] active:!scale-[0.98]",
   "!shadow-[0_6px_22px_rgba(0,0,0,0.14)]",
+  "hover:!shadow-[0_10px_28px_rgba(0,0,0,0.20)]",
+  "!transition-[transform,background-color,box-shadow,color,border-color,opacity] !duration-[180ms] !ease-[cubic-bezier(0.22,1,0.36,1)]",
   "focus-visible:!ring-white focus-visible:!ring-offset-black/40",
 ].join(" ");
 
@@ -232,6 +248,8 @@ export const HERO_LIGHT_BUTTON_SECONDARY_CLASS = [
 export const HERO_LIGHT_SCROLL_INDICATOR_CLASS = [
   "!px-8 !py-6",
   "!text-white/45 !hover:text-white/90",
+  "hover:!-translate-y-[1px]",
+  "!transition-[transform,color,opacity] !duration-[180ms] !ease-[cubic-bezier(0.22,1,0.36,1)]",
   "[&_[data-scroll-label]]:opacity-[0.65] [&_[data-scroll-label]]:hover:opacity-[0.95]",
   "[&_[data-scroll-icon]]:!h-24 [&_[data-scroll-icon]]:!w-12",
   "[&_[data-scroll-icon]::before]:!top-3",

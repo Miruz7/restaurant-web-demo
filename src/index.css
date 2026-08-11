@@ -62,12 +62,21 @@
   --ease-power2-out: var(--motion-ease-power2-out);
   --ease-power3-out: var(--motion-ease-power3-out);
 
-  --breakpoint-320: var(--breakpoint-320);
-  --breakpoint-768: var(--breakpoint-768);
-  --breakpoint-1024: var(--breakpoint-1024);
-  --breakpoint-1440: var(--breakpoint-1440);
-  --breakpoint-1920: var(--breakpoint-1920);
-  --breakpoint-3840: var(--breakpoint-3840);
+  /*
+   * Breakpoints — valores literales px.
+   *   ⚠  NO usar var(--breakpoint-xxx) aquí.
+   *      lightningcss (vite build:css-post) NO acepta variables en media queries
+   *      condicionales. Si usamos vars, genera @media (width >= var(...))
+   *      y build falla con Unexpected token Function("var").
+   *
+   *   Valores alineados 1:1 con ./styles/tokens/breakpoints.css (origen).
+   */
+  --breakpoint-320: 320px;
+  --breakpoint-768: 768px;
+  --breakpoint-1024: 1024px;
+  --breakpoint-1440: 1440px;
+  --breakpoint-1920: 1920px;
+  --breakpoint-3840: 3840px;
 
   --opacity-0: var(--opacity-0);
   --opacity-5: var(--opacity-5);
@@ -94,12 +103,12 @@
   --z-toast: var(--z-index-toast);
   --z-tooltip: var(--z-index-tooltip);
 
-  --container-sm: var(--container-sm);
-  --container-md: var(--container-md);
-  --container-lg: var(--container-lg);
-  --container-xl: var(--container-xl);
-  --container-2xl: var(--container-2xl);
-  --container-3xl: var(--container-3xl);
+  --container-sm: 640px;
+  --container-md: 768px;
+  --container-lg: 1024px;
+  --container-xl: 1280px;
+  --container-2xl: 1440px;
+  --container-3xl: 1920px;
 }
 
 /* =====================================================================
@@ -233,13 +242,11 @@ h6 {
   line-height: 1.2;
   letter-spacing: -0.01em;
   font-weight: 700;
-  color: var(--color-primary, #111);
 }
 
 p {
   font-family: var(--font-family-sans), system-ui, sans-serif;
   line-height: 1.6;
-  color: var(--color-primary, #111);
 }
 
 code,

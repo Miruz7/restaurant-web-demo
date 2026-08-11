@@ -52,6 +52,8 @@ export const PUBLIC_NAVIGATION: readonly NavigationItem[] = [
   {
     id: "contact",
     label: "Contacto",
-    href: "#contacto",
+    // Sprint 12.5.2.a: Se retiró #contacto del flujo principal. El Footer Premium
+    // concentra la información de contacto completa + horarios + navegación.
+    href: "#pie-pagina",
   },
 ] as const;

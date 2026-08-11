@@ -47,7 +47,9 @@ export const HERO_DATA: HeroData = {
   },
   secondaryCTA: {
     label: "Conoce nuestros servicios",
-    href: "#servicios",
+    // Sprint 12.5.2.a: Se retiró #servicios del flujo principal. Location Showcase
+    // cubre servicios de impresión / atención + ubicación de la tienda.
+    href: "#ubicacion",
   },
   scrollIndicatorLabel: "Desplazarse a la siguiente sección",
 } as const;

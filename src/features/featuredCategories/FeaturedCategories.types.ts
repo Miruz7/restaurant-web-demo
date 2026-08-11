@@ -24,9 +24,11 @@ export interface FeaturedCategoryItem {
     readonly alt: string;
     readonly width: number;
     readonly height: number;
+    readonly objectPosition?: string;
   };
   readonly href: string;
   readonly motionDelayMs: number;
+  readonly ctaText: string;
 }
 
 /** @deprecated — mantenido por compatibilidad futura (no usado). */

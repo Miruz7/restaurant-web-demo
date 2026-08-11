@@ -13,3 +13,35 @@
   --motion-ease-power2-out: cubic-bezier(0.25, 0.46, 0.45, 0.94);
   --motion-ease-power3-out: cubic-bezier(0.23, 1, 0.32, 1);
 }
+
+/* =====================================================================
+ * Sprint 12.6.C — Accesibilidad prefers-reduced-motion
+ *
+ * ⚠️ SCOPE EXCLUSIVO: microinteracciones de elementos interactivos.
+ * NO TOCAR: Storytelling Navigator, Footer Reveal / Reverse 1000 ms,
+ * Scene transitions, 1 wheel = 1 escena, scroll stack.
+ *
+ * Para no romper el motor Storytelling, solo anulamos transform
+ * y acortamos durations SOBRE ELEMENTOS INTERACTIVOS (<button>,
+ * <a[href]>, role="button"). Los contenedores escena (<section>)
+ * con transform stack/translate 1000 ms NO se ven afectados.
+ * ===================================================================== */
+@media (prefers-reduced-motion: reduce) {
+  :where(button, a[href], [role="button"]) {
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+  }
+
+  :where(button:hover, button:active, a[href]:hover, a[href]:active, [role="button"]:hover, [role="button"]:active) {
+    transform: none !important;
+  }
+
+  /* Iconos flecha que se desplazan con group-hover:translate-x(+3px) */
+  :where([class*="cta-arrow"], [class*="INFO_CTA_ARROW"], [class*="_SCROLL_"]) {
+    transition-duration: 0.01ms !important;
+  }
+  :where([class*="cta-arrow"]:hover, [class*="INFO_CTA_ARROW"]:hover, [class*="_SCROLL_"]:hover) {
+    transform: none !important;
+  }
+}

@@ -1,32 +1,55 @@
 /**
- * FeaturedCategories.constants.ts
+ * FeaturedCategories.constants.ts — Sprint 12.3.3 — Master Artwork Integration.
  *
- * SSOT: 4 categorías editoriales principales.
- * NO agregar más hasta tener roadmap.
- *
- * Los iconos NO se incluyen aquí: JSX pertenece a TSX.
- * Aquí almacenamos solo el key identificador; FeaturedCategoriesCard
- * lo resuelve a componente al renderizar.
+ * ✅ Imports ES Modules Vite de artwork definitivo.
+ * ✅ 0 placeholders. 0 rutas hardcodeadas. 0 /assets/ 0 public/.
+ * ✅ El resto (id, slug, title, description, iconKey, href, ctaText, motionDelayMs)
+ *   INTACTO Sprint 12.3.2.
  */
 
-import type { FeaturedCategoryItem, FeaturedCategoryIconKey } from "./FeaturedCategories.types";
+import escolaresArtwork from "./assets/Escolares.webp";
+import tecnologiaArtwork from "./assets/Tecnologia.webp";
+import impresionArtwork from "./assets/Impresion.webp";
+import oficinaArtwork from "./assets/Oficina.webp";
+import type { FeaturedCategoryIconKey, FeaturedCategoryItem } from "./FeaturedCategories.types";
 
+export const DEFAULT_FEATURED_CATEGORIES_ID = "featured-categories";
+
+export const FEATURED_CATEGORIES_HEADING = "Explora nuestras categorías";
+
+export const FEATURED_CATEGORIES_SUBHEADING =
+  "Todo lo que necesitas para estudiar, trabajar y crear, organizado para que encuentres cada producto rápidamente.";
+
+export const FEATURED_CATEGORY_ICON_KEYS = [
+  "escolares",
+  "tecnologia",
+  "impresion",
+  "oficina",
+] as const satisfies ReadonlyArray<FeaturedCategoryIconKey>;
+
+/* =============================================================================
+ * FEATURED_CATEGORIES — 4 categorías · artwork definitivo · imagenes 1920×1080.
+ *   Sólo cambia image.src → imports Vite artwork (objetivos 1,2,3 Sprint 12.3.3).
+ *   Todo lo demás permanece INTACTO Sprint 12.3.2.
+ * =========================================================================== */
 export const FEATURED_CATEGORIES: ReadonlyArray<FeaturedCategoryItem> = [
   {
     id: "escolares",
     slug: "escolares",
     title: "Escolares",
     description:
-      "Cuadernos, lápices, mochilas y todo lo necesario para empezar el ciclo con energía.",
+      "Cuadernos, lápices, mochilas y todo lo necesario para empezar el ciclo escolar con energía.",
     iconKey: "escolares",
     image: {
-      src: "https://coresg-normal.trae.ai/api/ide/v1/text_to_image?prompt=Editorial%20close-up%20of%20neat%20school%20desk%20with%20notebooks%20pencils%20backpack%20warm%20natural%20light%20dark%20wood%20background%20quiet%20composition%20cinematic%20photography&image_size=landscape_4_3",
-      alt: "Artículos escolares sobre escritorio de madera.",
-      width: 960,
-      height: 720,
+      src: escolaresArtwork,
+      alt: "Papelería escolar: cuadernos, lápices y mochila dispuestos editorialmente.",
+      width: 1920,
+      height: 1080,
+      objectPosition: "center center",
     },
     href: "/categorias/escolares",
     motionDelayMs: 0,
+    ctaText: "Ver productos escolares",
   },
   {
     id: "tecnologia",
@@ -36,28 +59,32 @@ export const FEATURED_CATEGORIES: ReadonlyArray<FeaturedCategoryItem> = [
       "Laptops, tabletas, accesorios y periféricos para estudiar y trabajar sin límites.",
     iconKey: "tecnologia",
     image: {
-      src: "https://coresg-normal.trae.ai/api/ide/v1/text_to_image?prompt=Editorial%20photograph%20minimal%20laptop%20wireless%20mouse%20tablet%20stylus%20on%20dark%20desk%20warm%20soft%20studio%20light%20high-end%20Apple-like%20composition&image_size=landscape_4_3",
-      alt: "Set de tecnología: laptop, tableta y accesorios.",
-      width: 960,
-      height: 720,
+      src: tecnologiaArtwork,
+      alt: "Set de tecnología: laptop, tableta y accesorios en composición editorial premium.",
+      width: 1920,
+      height: 1080,
+      objectPosition: "center right",
     },
     href: "/categorias/tecnologia",
     motionDelayMs: 80,
+    ctaText: "Explorar tecnología",
   },
   {
     id: "impresion",
     slug: "impresion",
     title: "Impresión",
-    description: "Cartuchos, toner, hojas premium y servicios de impresión con calidad editorial.",
+    description: "Cartuchos, tóner, hojas premium y servicios de impresión con calidad editorial.",
     iconKey: "impresion",
     image: {
-      src: "https://coresg-normal.trae.ai/api/ide/v1/text_to_image?prompt=Editorial%20still%20life%20printer%20freshly%20printed%20paper%20warm%20side%20light%20dark%20moody%20background%20minimal%20commercial%20photography&image_size=landscape_4_3",
-      alt: "Impresora con hojas recién impresas.",
-      width: 960,
-      height: 720,
+      src: impresionArtwork,
+      alt: "Impresora con hojas recién impresas, tinta y papelería sobre superficie oscura.",
+      width: 1920,
+      height: 1080,
+      objectPosition: "62% center",
     },
     href: "/categorias/impresion",
     motionDelayMs: 160,
+    ctaText: "Ver soluciones de impresión",
   },
   {
     id: "oficina",
@@ -66,21 +93,14 @@ export const FEATURED_CATEGORIES: ReadonlyArray<FeaturedCategoryItem> = [
     description: "Organizadores, carpetas, papelería y mobiliario para un espacio productivo.",
     iconKey: "oficina",
     image: {
-      src: "https://coresg-normal.trae.ai/api/ide/v1/text_to_image?prompt=Editorial%20shot%20of%20organized%20office%20desk%20with%20folders%20planner%20pen%20cup%20warm%20soft%20light%20dark%20oak%20wood%20premium%20look&image_size=landscape_4_3",
-      alt: "Escritorio de oficina organizado con papelería.",
-      width: 960,
-      height: 720,
+      src: oficinaArtwork,
+      alt: "Escritorio de oficina organizado con carpetas, planner y papelería premium.",
+      width: 1920,
+      height: 1080,
+      objectPosition: "70% center",
     },
     href: "/categorias/oficina",
     motionDelayMs: 240,
+    ctaText: "Ver productos de oficina",
   },
-];
-
-export const FEATURED_CATEGORIES_HEADING = "Explora nuestras categorías";
-
-export const FEATURED_CATEGORIES_SUBHEADING =
-  "Todo lo que necesitas para estudiar, trabajar y crear, organizado para que encuentres cada producto rápidamente.";
-
-export const DEFAULT_FEATURED_CATEGORIES_ID = "categorias" as const;
-
-export type { FeaturedCategoryIconKey };
+] as const;

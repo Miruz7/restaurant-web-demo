@@ -17,7 +17,7 @@ function FeaturedCategoriesGrid({ categories, className }: FeaturedCategoriesGri
       aria-label="Categorías destacadas"
     >
       {categories.map((c) => (
-        <div role="listitem" key={c.id} className="w-full">
+        <div role="listitem" key={c.id} className="w-full h-full flex flex-col">
           <FeaturedCategoriesCard category={c} />
         </div>
       ))}

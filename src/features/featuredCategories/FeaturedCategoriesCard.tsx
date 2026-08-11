@@ -54,8 +54,8 @@ function FeaturedCategoriesCard({
           loading="lazy"
           decoding="async"
           draggable={false}
-          width={image.width}
-          height={image.height}
+          width={960}
+          height={480}
           className={FEATURED_CATEGORIES_CARD_IMG_CLASS}
         />
         <div aria-hidden="true" className={FEATURED_CATEGORIES_CARD_OVERLAY_CLASS} />

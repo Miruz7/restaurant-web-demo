@@ -14,7 +14,10 @@ export const ANCHORS = {
   CATALOGO: "catalogo",
   NOSOTROS: "nosotros",
   BLOG: "blog",
-  CONTACTO: "contacto",
+  // Sprint 12.5.2.a: #contacto retirada del flujo principal. Contacto vive ahora
+  // en el Footer Premium (id="pie-pagina") + Location Showcase (id="ubicacion").
+  // Mantener key intacta para no romper imports existentes.
+  CONTACTO: "pie-pagina",
 } as const;
 
 export type AnchorKey = (typeof ANCHORS)[keyof typeof ANCHORS];

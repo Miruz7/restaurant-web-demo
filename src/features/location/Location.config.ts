@@ -124,10 +124,17 @@ export const LOCATION_MAP_COL_CLASS = [
 ].join(" ");
 
 /* ========================================================================= *
- * BLOQUE INFO EDITORIAL (columna izquierda) — Sprint 12.4.1.
- *   • Head gap 6 (24 px) · mb 32/40/48 px.
- *   • Info list max-w-[620 px] (bloque de info nunca se extiende).
+ * BLOQUE INFO EDITORIAL (columna izquierda) — Sprint 12.4.1 + Sprint 7C.
+ *   • Root gap 32 / 44 / 48 (mobile 32 = más compacto sin saturación).
+ *   • Head gap 5 (20 px) / md:gap-6 (24 px).
+ *   • Info list gap 16 / 20 / 24 (más aire que 12px base).
  * ========================================================================= */
+
+export const LOCATION_INFO_ROOT_CLASS = [
+  "w-full flex flex-col items-stretch",
+  "gap-[32px] md:gap-[32px] lg:gap-[36px]",
+  "px-[4px] md:px-0",
+].join(" ");
 
 export const LOCATION_HEAD_CLASS = ["flex flex-col items-start gap-5 md:gap-6 w-full"].join(" ");
 
@@ -135,14 +142,14 @@ export const LOCATION_EYEBROW_CLASS = [
   "inline-flex items-center gap-[10px]",
   "px-[14px] py-[6px] rounded-full",
   "bg-white/10 border border-white/14 backdrop-blur-[8px]",
-  "text-[12px] md:text-[12.5px] lg:text-[13px] font-semibold uppercase tracking-[0.22em]",
+  "text-[12px] md:text-[12.5px] lg:text-[13px] font-semibold uppercase tracking-[0.24em]",
   "text-white/82",
   `[text-shadow:${HERO_ARTISAN_META_SHADOW}]`,
 ].join(" ");
 
 export const LOCATION_HEADING_CLASS = [
   "font-heading font-bold tracking-tight text-white",
-  "text-[24px] leading-[1.05]",
+  "text-[24px] leading-[1.1]",
   "md:text-[34px] md:leading-[1.08]",
   "lg:text-[48px]",
   `[text-shadow:${HERO_ARTISAN_HEADING_SHADOW}]`,
@@ -159,7 +166,7 @@ export const LOCATION_DESCRIPTION_CLASS = [
 /* ===== Info listado: Dirección / Horario / Teléfono / WhatsApp. ===== */
 
 export const LOCATION_INFO_LIST_CLASS = [
-  "flex flex-col items-stretch gap-[12px] md:gap-[16px] lg:gap-[24px]",
+  "flex flex-col items-stretch gap-[16px] md:gap-[20px] lg:gap-[24px]",
   "max-w-[620px]",
 ].join(" ");
 
@@ -191,14 +198,14 @@ export const LOCATION_INFO_LABEL_CLASS = [
 ].join(" ");
 
 export const LOCATION_INFO_VALUE_CLASS = [
-  "text-[13.5px] leading-[1.5] md:text-[15px] md:leading-[1.55] lg:text-[16.5px]",
+  "text-[14px] leading-[1.55] md:text-[15px] md:leading-[1.55] lg:text-[16.5px]",
   "text-white font-medium",
   `[text-shadow:${HERO_ARTISAN_SUB_SHADOW}]`,
 ].join(" ");
 
 export const LOCATION_SCHEDULE_DAY_CLASS = [
-  "flex items-center justify-between gap-4",
-  "py-[4px] md:py-[6px]",
+  "flex items-center justify-between gap-[8px]",
+  "py-[6px] md:gap-4 md:py-[6px]",
 ].join(" ");
 
 export const LOCATION_SCHEDULE_LABEL_CLASS = [
@@ -215,7 +222,8 @@ export const LOCATION_SCHEDULE_HOURS_CLASS = [
 
 export const LOCATION_ACTIONS_CLASS = [
   "flex flex-col items-stretch gap-[8px] w-full",
-  "md:flex-row md:items-center md:flex-wrap md:gap-[16px]",
+  "md:flex-row md:items-center md:flex-wrap md:gap-[16px] md:justify-end",
+  "md:max-w-[480px] md:ml-auto",
 ].join(" ");
 
 export const LOCATION_CTA_PRIMARY_CLASS = [

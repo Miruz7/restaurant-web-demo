@@ -13,6 +13,7 @@ export type {
   FeaturedCategoriesSectionProps,
   FeaturedCategoryIconKey,
 } from "./FeaturedCategories.types";
+export { CategoryMenuModal, type CategoryMenuModalProps } from "./components/CategoryMenuModal";
 export {
   DEFAULT_FEATURED_CATEGORIES_ID,
   FEATURED_CATEGORIES,
@@ -20,10 +21,10 @@ export {
   FEATURED_CATEGORIES_SUBHEADING,
 } from "./FeaturedCategories.constants";
 export {
-  CategoryIconEscolares,
-  CategoryIconImpresion,
-  CategoryIconOficina,
-  CategoryIconTecnologia,
+  CategoryIconBebidas,
+  CategoryIconCenas,
+  CategoryIconComidas,
+  CategoryIconDesayunos,
 } from "./FeaturedCategories.icons";
 export {
   buildFeaturedCardDelay,

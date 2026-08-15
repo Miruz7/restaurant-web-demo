@@ -26,8 +26,8 @@ function Header({ className, style }: HeaderProps) {
     >
       <Section spacing="none" className="h-full">
         <Container size="3xl" fullWidth className={HEADER_CONTAINER_CLASSES}>
-          <a href="/" className={HEADER_LOGO_CLASSES} aria-label="Papelería Nova - Inicio">
-            Papelería Nova
+          <a href="/" className={HEADER_LOGO_CLASSES} aria-label="Sabor de Casa - Inicio">
+            Sabor de Casa
           </a>
 
           <div className={HEADER_NAV_CLASSES}>

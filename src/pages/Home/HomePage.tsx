@@ -55,7 +55,7 @@ import {
   ScrollIndicator,
 } from "@/features/hero";
 
-import HERO_BACKGROUND_V1 from "@/assets/images/hero/hero-background-main-v1.webp";
+import HERO_BACKGROUND_V2 from "@/assets/images/hero/hero-background-main-v2.webp";
 import HeroEntrance, {
   HERO_MOTION_ACTIONS_ENTRANCE_CLASS,
   HERO_MOTION_BADGE_ENTRANCE_CLASS,
@@ -137,7 +137,7 @@ function HomeStorytellingScenes(): ReactElement {
           background={
             <HeroBackground tone="editorial">
               <img
-                src={HERO_BACKGROUND_V1}
+                src={HERO_BACKGROUND_V2}
                 alt=""
                 aria-hidden="true"
                 loading="eager"

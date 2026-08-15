@@ -33,10 +33,14 @@ import {
   LOCATION_OVERLAY_CLASS,
   LOCATION_SECTION_BG_CLASS,
 } from "./Location.config";
-import { DEFAULT_LOCATION_SECTION_ID, LOCATION_DATA } from "./Location.constants";
+import {
+  DEFAULT_LOCATION_SECTION_ID,
+  LOCATION_DATA,
+  LOCATION_GMAPS_DIRECTION_URL,
+} from "./Location.constants";
 import LocationInfo from "./components/LocationInfo";
 import MapCard from "./components/MapCard";
-import locationStorefrontSrc from "./assets/location-storefront-day.webp";
+import locationStorefrontV2 from "./assets/location-storefront-day-v2.webp";
 import { FooterRevealBus } from "@/features/footer/FooterReveal.bus";
 import { useEffect, useMemo, useRef, useState, type CSSProperties, type ReactElement } from "react";
 
@@ -105,7 +109,7 @@ export default function LocationSection({
 
   const backDropStyle = useMemo<CSSProperties>(
     () => ({
-      backgroundImage: `url(${locationStorefrontSrc})`,
+      backgroundImage: `url(${locationStorefrontV2})`,
     }),
     [],
   );
@@ -163,7 +167,9 @@ export default function LocationSection({
                 />
               }
               right={
-                <MapCard map={LOCATION_DATA.map} primaryHref={LOCATION_DATA.primaryCTA.href} />
+                <div className="hidden w-full md:block">
+                  <MapCard map={LOCATION_DATA.map} primaryHref={LOCATION_GMAPS_DIRECTION_URL} />
+                </div>
               }
               gridClassName="h-full w-full"
             />

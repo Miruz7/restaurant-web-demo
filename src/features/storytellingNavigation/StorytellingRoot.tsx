@@ -207,7 +207,10 @@ function StorytellingViewport({
         {dockingFooter ? (
           <div
             ref={dockWrapperRef}
-            className={cn("absolute inset-x-0 bottom-0 z-[3] w-full", dockWrapperVisibilityClass)}
+            className={cn(
+              "absolute inset-x-0 bottom-0 z-[3] w-full pointer-events-none",
+              dockWrapperVisibilityClass,
+            )}
           >
             {dockingFooter}
           </div>

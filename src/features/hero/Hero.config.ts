@@ -161,7 +161,7 @@ export const HERO_LIGHT_BADGE_CLASS = [
   "!text-white/92",
   "shadow-[0_6px_18px_rgba(0,0,0,0.12)]",
   "[text-shadow:0_1px_1px_rgba(0,0,0,0.26)]",
-  "translate-x-3 translate-y-4",
+  "translate-x-[112px] -translate-y-[48px]",
 ].join(" ");
 
 /**

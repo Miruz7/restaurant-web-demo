@@ -43,8 +43,8 @@ export default function FooterBrand({ data, className }: FooterBrandProps): Reac
       {/* ② NOMBRE: fw‑800 · tracking‑tight · leading‑tight = HERO H1. */}
       <h2 className={FOOTER_BRAND_NAME_CLASS}>{data.name}</h2>
 
-      {/* ③ TAGLINE: MUY discreto · white/70 · "Papelería • Impresión • Tecnología" */}
-      <p className={FOOTER_BRAND_TAGLINE_CLASS}>Papelería • Impresión • Tecnología</p>
+      {/* ③ TAGLINE: MUY discreto · white/70 · coherente con brand.tagline */}
+      <p className={FOOTER_BRAND_TAGLINE_CLASS}>{data.tagline}</p>
 
       {/* ④ DESCRIPCIÓN: max 3 líneas · line-clamp-3 */}
       <p className={FOOTER_BRAND_DESC_CLASS}>{data.description}</p>

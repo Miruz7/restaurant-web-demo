@@ -72,8 +72,10 @@ export default function Footer({
     <footer
       id={id}
       ref={footerRef}
-      aria-label="Pie de página · Papelería Nova"
-      className={[FOOTER_SECTION_BASE_CLASS, className].filter(Boolean).join(" ")}
+      aria-label="Pie de página · Sabor de Casa"
+      className={[FOOTER_SECTION_BASE_CLASS, "pointer-events-auto", className]
+        .filter(Boolean)
+        .join(" ")}
       style={mergedFooterStyle}
     >
       {/*
@@ -104,11 +106,11 @@ export default function Footer({
           {/* ① LOGO */}
           <MinimalBrandMark />
 
-          {/* ② Nombre Papelería Nova */}
-          <h2 className={FOOTER_MINIMAL_NAME_CLASS}>Papelería Nova</h2>
+          {/* ② Nombre Sabor de Casa */}
+          <h2 className={FOOTER_MINIMAL_NAME_CLASS}>Sabor de Casa</h2>
 
           {/* ③ Tagline editorial */}
-          <p className={FOOTER_MINIMAL_TAGLINE_CLASS}>Papelería • Tecnología • Impresión</p>
+          <p className={FOOTER_MINIMAL_TAGLINE_CLASS}>Cocina mexicana • Desayunos • Comidas</p>
         </div>
 
         {/* ────────── BLOQUE DERECHO · INFO AUTOR + LEGAL ──────── */}
@@ -123,7 +125,7 @@ export default function Footer({
           </div>
 
           {/* ⑥ Legal / Copyright */}
-          <p className={FOOTER_MINIMAL_LEGAL_CLASS}>© 2026 Papelería Nova</p>
+          <p className={FOOTER_MINIMAL_LEGAL_CLASS}>© 2026 Sabor de Casa</p>
         </div>
       </div>
     </footer>

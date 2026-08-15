@@ -76,6 +76,35 @@ export const CINEMATIC_HARD_LOCK_CSS = /* css */ `
  * VIEW TRANSITION API — SNAPSHOT LOCK PSEUDO-ELEMENTS (DURACIÓN FINITA!)
  * ================================================================ */
 @supports (view-transition-name: __pn_detect) {
+  /* Sprint 12.7.B.3 · PARTE 2: BLUR OUT 0px → 8px en 500ms.
+   * Aplica EXCLUSIVAMENTE a ::view-transition-old(root) (snapshot OLD escena actual).
+   * Opacity = 1 constante (NO crossfade); NEW opacity = 0 hasta release 516ms.
+   * @keyframes = cinemático; easing STORYTELLING_BEZIER .22,1,.36,1 = coincide stack.
+   *
+   * Sprint 12.7.B.3 · PARTE 4: FOCUS IN 8px → 0px en 500ms.
+   * Aplica EXCLUSIVAMENTE a ::view-transition-new(root) TRAS el Invisible Swap
+   *   (cuando :root[data-cinematic-vt-release=true]).
+   * Misma duración 500ms · mismo bezier .22,1,.36,1 · fill both.
+   * Total = 500 (blur out) + 500 (focus in) ≈ 1000ms = CINEMATIC_SCENE_DURATION_MS.
+   */
+  @keyframes cinematic-blur-out {
+    from {
+      filter: blur(0px);
+    }
+    to {
+      filter: blur(8px);
+    }
+  }
+
+  @keyframes cinematic-focus-in {
+    from {
+      filter: blur(8px);
+    }
+    to {
+      filter: blur(0px);
+    }
+  }
+
   /* Contenedor general de VT. */
   :root::view-transition {
     position: fixed;
@@ -88,9 +117,15 @@ export const CINEMATIC_HARD_LOCK_CSS = /* css */ `
   }
 
   /* OLD = Snapshot congelado escena actual.
-   * animation-duration: 1200ms = CINEMATIC_SCENE_DURATION_MS × 1.2 (margen safe).
-   * steps(2, jump-start) = sin interpolación de opacity. Se mantiene CONSTANTE = 1.
-   * NO INFINITO. Delay render = 0.
+   * SPRINT B.3 PARTE 2 BLUR OUT:
+   *   animation-name: cinematic-blur-out
+   *   animation-duration: 500ms
+   *   bezier .22,1,.36,1
+   *   fill-mode: both → 0 → 8px y mantiene 8px después 500ms hasta RELEASE 516ms
+   *   opacity = 1 CONSTANTE (sin crossfade)
+   *   NO scale · NO translate · NO steps en filter 0 → 8px animation
+   * Duración general del VT lock = 1200ms (margen safe del lock; la animation-duration del blur es 500ms).
+   * La duración 1200ms aquí NO controla opacity (opacity se libera por data-attr release).
    */
   :root::view-transition-old(root) {
     position: fixed;
@@ -98,19 +133,30 @@ export const CINEMATIC_HARD_LOCK_CSS = /* css */ `
     width: 100vw;
     height: 100vh;
     opacity: 1;
-    animation-name: none;
-    animation-duration: 1200ms;
-    animation-timing-function: steps(2, jump-start);
+    animation-name: cinematic-blur-out;
+    animation-duration: 500ms;
+    animation-timing-function: cubic-bezier(0.22, 1, 0.36, 1);
     animation-fill-mode: both;
     animation-iteration-count: 1;
     animation-delay: 0ms;
     mix-blend-mode: normal;
     z-index: 9999;
+    filter: blur(0px);
   }
 
   /* NEW = Render actualizado tras el cambio.
-   * Misma duración 1200ms.
-   * steps(2, jump-start) = opacity = 0 constante TODO el rango (sin crossfade).
+   * SPRINT B.3 PARTE 3 INVISIBLE SWAP:
+   *   PARTE 3 FUNDAMENTAL: ::view-transition-new(root) NUNCA arranca nítido.
+   *   - filter: blur(8px)  ← snapshot NEW de Scene B ya está en 8px TODO el rato (opacity=0 → invisible anyway).
+   *   - opacity: 0          ← CONSTANTE hasta RELEASE (NO fade-in, NO blur-in aquí).
+   *   - animation-duration 1200ms lock margin; steps(2,jump-start) garantiza opacity 0 no interpolada.
+   *   Al hacer RELEASE T=516ms salta opacity=1 (instant step) y permanece blur(8px) ← = Invisible Swap:
+   *     OLD blur8 + opacity1 → OLD blur8 + opacity0  (instant)
+   *     NEW blur8 + opacity0 → NEW blur8 + opacity1  (instant)
+   *     ambos visualmente equivalentes, el usuario NO detecta el instante exacto del cambio.
+   *   PARTE 3 termina aquí. El blur-in (8→0px) NEW queda para PARTE 4.
+   *   NO translate · NO scale · NO overscan · NO inset negativo.
+   *   Geometría Snapshot Lock Parte 1.4 intacta.
    */
   :root::view-transition-new(root) {
     position: fixed;
@@ -118,6 +164,7 @@ export const CINEMATIC_HARD_LOCK_CSS = /* css */ `
     width: 100vw;
     height: 100vh;
     opacity: 0;
+    filter: blur(8px);
     animation-name: none;
     animation-duration: 1200ms;
     animation-timing-function: steps(2, jump-start);
@@ -130,18 +177,33 @@ export const CINEMATIC_HARD_LOCK_CSS = /* css */ `
 
   /* RELEASE INSTANTÁNEO: data-cinematic-vt-release = true.
    * Salto step sin interpolación ni frame vacío.
+   *   INVISIBLE SWAP = ambas imágenes en blur(8px), solo salta la opacidad.
+   *   OLD: opacity 0 instant · blur 8px (mantenido para 0 frames intermedios).
+   *   NEW: opacity 1 instant · blur 8px START · PARTE 4 FOCUS-IN empieza aquí.
+   *   ❌ NO ease · NO crossfade · NO 0.5/0.5 co-visible · NO duration <500ms de focus.
    */
   :root[data-cinematic-vt-release="true"]::view-transition-old(root) {
     opacity: 0 !important;
     animation-name: none !important;
     animation-duration: 1ms !important;
     animation-fill-mode: none !important;
+    filter: blur(8px) !important;
   }
   :root[data-cinematic-vt-release="true"]::view-transition-new(root) {
+    /* PARTE 4 FOCUS IN: exclusivo NEW snapshot (Regla 3).
+     * - Empieza TRAS el swap (data-attr true → FOCUS_START ≈516ms).
+     * - from=8px · to=0px · duration=500ms · bezier .22,1,.36,1.
+     * - fill both = start en 8px (garantiza no frame nítido inicial) · end en 0 y lo mantiene.
+     * - opacity 1 CONSTANTE TODO el focus in (Regla 6: NO fade-in / NO crossfade).
+     * - animation-delay 0ms = inicia sincrónicamente con el swap step.
+     */
     opacity: 1 !important;
-    animation-name: none !important;
-    animation-duration: 1ms !important;
-    animation-fill-mode: none !important;
+    animation-name: cinematic-focus-in !important;
+    animation-duration: 500ms !important;
+    animation-timing-function: cubic-bezier(0.22, 1, 0.36, 1) !important;
+    animation-fill-mode: both !important;
+    animation-iteration-count: 1 !important;
+    animation-delay: 0ms !important;
   }
 }
 
@@ -202,10 +264,36 @@ export const CINEMATIC_HARD_LOCK_CSS = /* css */ `
 
 @media (prefers-reduced-motion: reduce) {
   @supports (view-transition-name: __pn_detect) {
-    :root::view-transition-old(root),
+    /* PARTE 2/3/4: reduced motion = sin blur, sin animación cinematográfica.
+     * OLD: no blur-out, opacity 1.
+     * NEW: no focus-in (blur 0, opacity 1, duration 1ms).
+     * :root[data-cinematic-vt-release=true]::view-transition-new NO activa animation-name: cinematic-focus-in.
+     */
+    :root::view-transition-old(root) {
+      animation-name: none !important;
+      animation-duration: 1ms !important;
+      animation-fill-mode: none !important;
+      filter: blur(0px) !important;
+      opacity: 1 !important;
+    }
     :root::view-transition-new(root) {
       animation-duration: 1ms !important;
       animation-fill-mode: none !important;
+      opacity: 1 !important;
+      filter: blur(0px) !important;
+    }
+    :root[data-cinematic-vt-release="true"]::view-transition-old(root) {
+      animation-name: none !important;
+      animation-duration: 1ms !important;
+      animation-fill-mode: none !important;
+      filter: blur(0px) !important;
+      opacity: 0 !important;
+    }
+    :root[data-cinematic-vt-release="true"]::view-transition-new(root) {
+      animation-name: none !important;
+      animation-duration: 1ms !important;
+      animation-fill-mode: none !important;
+      filter: blur(0px) !important;
       opacity: 1 !important;
     }
   }

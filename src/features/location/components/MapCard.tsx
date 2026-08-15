@@ -51,7 +51,10 @@ export default function MapCard({ map, primaryHref, className }: MapCardProps): 
       {...{ [CINEMATIC_EXCLUDE_BLUR_ATTR]: "" as const }}
     >
       {/* ----- Header -------------------------------------------------- */}
-      <figcaption className={LOCATION_MAP_CARD_HEADER_CLASS}>
+      <figcaption
+        className={LOCATION_MAP_CARD_HEADER_CLASS}
+        style={{ paddingTop: 12, paddingLeft: 16 }}
+      >
         <div className="flex flex-col items-start min-w-0">
           <span className={LOCATION_MAP_CARD_TITLE_CLASS}>{map.title}</span>
           <span className={LOCATION_MAP_CARD_SUBTITLE_CLASS}>{map.subtitle}</span>

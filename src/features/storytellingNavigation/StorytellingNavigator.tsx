@@ -406,6 +406,74 @@ export function StorytellingNavigatorProvider({
       };
 
       /* ======================================================================
+       * SPRINT 12.7.B.3 · PARTE 1.5: PRE-HOOK CLEAR INLINE TRANSFORM RESIDUAL
+       *
+       * La transición ANTERIOR conservaba un inline style.transform = hard snap
+       * exact en el Stack (para evitar flash Y=0 cuando React no re-renderiza
+       * stackStyle en esa misma escena). Este inline NO debe limpiarse "ciegamente"
+       * en el goTo NUEVO porque antes de que React pinte el stackStyle declarativo
+       * para currentScene = clamped, hay un microtask-gap donde el transform=""
+       * cae a 0 = bug flash.
+       *
+       * Solución CORRECTA (SIN borrar ciegamente inline de la escena anterior):
+       *   - Antes de comenzar la nueva transición, calculamos el valor DECLARATIVO
+       *     DE LA ESCENA ACTUAL = currentScene (antes del cambio). O sea
+       *     EXPECTED_CURRENT_DECLARATIVE = -currentScene * H.
+       *   - Leemos COMPUTED actual.
+       *   - Si inline = EXPECTED_CURRENT_DECLARATIVE, entonces React declarativo
+       *     = valor exacto. Podemos limpiar inline (sin gap). Gap <0.5 → limpio.
+       *   - Si hay >0.5px de gap (React declarativo ya no coincide, por ejemplo
+       *     hubo resize y cambio H), NO limpiamos aquí; el clear residual se hará
+       *     justo DESPUÉS del setCurrentScene declarativo (useEffect).
+       * ====================================================================== */
+      try {
+        if (typeof document !== "undefined" && typeof window !== "undefined") {
+          const preHookEl = document.querySelector<HTMLElement>('[data-storytelling-stack="true"]');
+          if (preHookEl) {
+            const hadTransform = !!preHookEl.style.transform;
+            const hadTransition = !!preHookEl.style.transition;
+            if (hadTransform || hadTransition) {
+              const H = window.innerHeight;
+              // ⚠ IMPORTANTE: usamos currentScene ACTUAL (NO clamped nueva escena)
+              // porque queremos confirmar que React declarativo actual coincide con
+              // el inline que queremos limpiar.
+              const EXPECTED_CURRENT_DECLARATIVE = -1 * currentScene * H;
+              const readTy = (): number => {
+                const cs = window.getComputedStyle(preHookEl);
+                if (!cs || !cs.transform || cs.transform === "none") return 0;
+                const m = cs.transform.match(/matrix\(([^)]+)\)/);
+                if (!m) return 0;
+                const parts = m[1].split(",").map((s) => Number.parseFloat(s.trim()));
+                return parts.length >= 6 && Number.isFinite(parts[5]) ? parts[5] : 0;
+              };
+              const BEFORE_COMPUTED = readTy();
+              preHookEl.style.transform = "";
+              preHookEl.style.transition = "";
+              void preHookEl.offsetTop;
+              const AFTER_COMPUTED = readTy();
+              const GAP_DECLARATIVE = Math.abs(AFTER_COMPUTED - EXPECTED_CURRENT_DECLARATIVE);
+              if (GAP_DECLARATIVE > 0.5) {
+                // No alineado con declarativo de currentScene. rollback inline anterior.
+                // El FINALIZATION del nuevo goTo va a re-escribir el inline anyway.
+                preHookEl.style.transform = `translate3d(0, ${BEFORE_COMPUTED.toFixed(6)}px, 0)`;
+                preHookEl.style.transition = "none";
+                void preHookEl.offsetTop;
+                console.debug(
+                  `[p15][PRE_HOOK_CLEAR_ROLLBACK] gap_declarative_currentScene=${GAP_DECLARATIVE.toFixed(6)}px → rollback inline ${BEFORE_COMPUTED.toFixed(6)} (React declarativo aún no coincide). El FINALIZATION nuevo re-escribirá.`,
+                );
+              } else {
+                console.debug(
+                  `[p15][PRE_HOOK_CLEAR_INLINE_OK] hadTransform=${hadTransform} hadTransition=${hadTransition} before=${BEFORE_COMPUTED.toFixed(6)} afterClear=${AFTER_COMPUTED.toFixed(6)} expectedCurrentDeclarative=${EXPECTED_CURRENT_DECLARATIVE.toFixed(6)} gap=${GAP_DECLARATIVE.toFixed(6)}px → safe clear sin flash.`,
+                );
+              }
+            }
+          }
+        }
+      } catch {
+        /* ignore: no bloquea transición */
+      }
+
+      /* ======================================================================
        * SPRINT 12.7.B.3 · PARTE 1.1 CORRECCIÓN DELAY.
        * CORRECIONES APLICADAS vs versión anterior errónea:
        *  ✅ NO usar callback ASYNC dentro startViewTransition (NO async/await dentro).
@@ -478,15 +546,130 @@ export function StorytellingNavigatorProvider({
         );
 
         // =====================================================================
-        // RELEASE INDEPENDIENTE (NO dependemos de vt.ready para nada).
-        // Se programa un solo timeout en INPUT + effectiveDuration + 16ms = ~516ms.
-        // Cuando llegue → STACK_STABLE determinado + SNAPSHOT_RELEASE CSS step instantáneo.
+        // HARD FINAL STACK SNAP + ZERO-POSITION FLASH FIX (SPRINT 12.7.B.3 · 1.5)
+        //
+        // SPLIT TIMING:
+        //   T0 + 500ms  = STACK FINALIZATION (invisible: snapshot OLD sigue visible)
+        //                  → transition:none → translate3d exact -N * H (math exact)
+        //                  → PRESERVAR before-inline transform/transition React declarativo
+        //   T0 + 516ms  = SNAPSHOT RELEASE (step CSS attribute + skipTransition)
+        //   T0 + 580ms  = HANDOFF 2-STEP a React (RESTORE):
+        //                    Step A: inline transform = preserved-declarative (NO clear "")
+        //                    Step B: inline transition = restored
+        //                    Step C: 1 rAF despues → clear inline (React ya está painter correcto,
+        //                                     handoff sin gap de 0px!)
+        //
+        // SIN modificar: STORYTELLING_TRANSITION_MS=500 · Snapshot geometry (transform:none)
         // =====================================================================
+
+        const readComputedStackTy = (): number => {
+          if (typeof document === "undefined" || typeof window === "undefined") return 0;
+          const stackEl = document.querySelector<HTMLElement>('[data-storytelling-stack="true"]');
+          if (!stackEl) return 0;
+          const cs = window.getComputedStyle(stackEl);
+          if (!cs || !cs.transform || cs.transform === "none") return 0;
+          const m = cs.transform.match(/matrix\(([^)]+)\)/);
+          if (!m) return 0;
+          const parts = m[1].split(",").map((s) => Number.parseFloat(s.trim()));
+          if (parts.length < 6 || !Number.isFinite(parts[5])) return 0;
+          return parts[5];
+        };
+
+        /* ===== PRESERVACIÓN pre-touch para handoff sin flash =====
+         * En FINALIZATION guardamos el valor ORIGINAL de React declarativo (antes de
+         * imponer transition:none + hard-snap). Esto evita el bug Parte1.4:
+         *   clear style.transform = "" → stackTranslateY = 0 (Scene 0 flash!) x 2 frames
+         * porque React no re-commit style inline al mismo task (async).
+         * Al preservar y aplicar handoff=declarative value ANTES de limpiar, evitamos
+         * que nunca pase por identity 0.
+         */
+        let preservedInlineTransform: string | null = null;
+        let preservedInlineTransition: string | null = null;
+
+        // ----- TIMEPOINT 1: FINALIZE Stack exacto a effectiveDuration = 500ms -----
+        const finalizeAtMs = Math.max(1, effectiveDuration);
+        window.setTimeout(() => {
+          if (typeof document === "undefined" || typeof window === "undefined") return;
+          const FINALIZATION_TS = typeof performance !== "undefined" ? performance.now() : 0;
+          const stackEl = document.querySelector<HTMLElement>('[data-storytelling-stack="true"]');
+          if (!stackEl) {
+            console.debug(`[p14][STACK_FINALIZATION] SKIP (element not found)`);
+            return;
+          }
+          // 0) GUARDAR los estilos que React declarativo ya tenía pintados antes de tocar nada.
+          preservedInlineTransform = stackEl.style.transform;
+          preservedInlineTransition = stackEl.style.transition;
+
+          const BEFORE_FINALIZATION_TY = readComputedStackTy();
+          const H = window.innerHeight;
+          const FINAL_TARGET_TY = -1 * clamped * H;
+          const deltaBefore = BEFORE_FINALIZATION_TY - FINAL_TARGET_TY;
+
+          // 1) Quitar interpolarización (bezier) → transition none
+          stackEl.style.transition = "none";
+          // 2) Aplicar valor matemático EXACTO -N * H
+          stackEl.style.transform = `translate3d(0, ${FINAL_TARGET_TY}px, 0)`;
+          // 3) Force reflow para que el navegador haga commit del pixel en el mismo task
+          void stackEl.offsetTop;
+          // 4) Leer AFTER para confirmar
+          const AFTER_FINALIZATION_TY = readComputedStackTy();
+          const deltaAfter = AFTER_FINALIZATION_TY - FINAL_TARGET_TY;
+          const diffBeforeStr = Number.isFinite(deltaBefore)
+            ? `${deltaBefore.toFixed(6)}px error`
+            : "?";
+          const diffAfterStr = Number.isFinite(deltaAfter)
+            ? `${deltaAfter.toFixed(6)}px error`
+            : "?";
+          console.debug(
+            `[p14][STACK_FINALIZATION] ${FINALIZATION_TS.toFixed(2)}  +${(FINALIZATION_TS - INPUT_RECEIVED_TS).toFixed(2)}ms  BEFORE=${BEFORE_FINALIZATION_TY.toFixed(6)} → TARGET=${FINAL_TARGET_TY.toFixed(6)} → AFTER=${AFTER_FINALIZATION_TY.toFixed(6)}`,
+          );
+          console.debug(
+            `[p14][STACK_FINALIZATION_DELTA] Error before: ${diffBeforeStr}  ·  Error after: ${diffAfterStr}  ·  clamped=${clamped}  ·  viewportHeight=${H}  ·  reducedMotion=${reducedMotion}`,
+          );
+          console.debug(
+            `[p15][PRESERVED_REACT_INLINE] transform="${
+              preservedInlineTransform ?? "(empty)"
+            }" transition="${preservedInlineTransition ?? "(empty)"}"`,
+          );
+
+          if (typeof window !== "undefined") {
+            const anyWin = window as unknown as {
+              __p14_last_final?: {
+                transition: string;
+                clamped: number;
+                H: number;
+                before: number;
+                target: number;
+                after: number;
+                inputTs: number;
+                ts: number;
+                ok: boolean;
+                preservedTransform: string | null;
+                preservedTransition: string | null;
+              };
+            };
+            anyWin.__p14_last_final = {
+              transition: stackEl.style.transition,
+              clamped,
+              H,
+              before: BEFORE_FINALIZATION_TY,
+              target: FINAL_TARGET_TY,
+              after: AFTER_FINALIZATION_TY,
+              inputTs: INPUT_RECEIVED_TS,
+              ts: FINALIZATION_TS,
+              ok: Number.isFinite(deltaAfter) && Math.abs(deltaAfter) < 1e-6,
+              preservedTransform: preservedInlineTransform,
+              preservedTransition: preservedInlineTransition,
+            };
+          }
+        }, finalizeAtMs);
+
+        // ----- TIMEPOINT 2: SNAPSHOT RELEASE (mantiene +16ms paint buffer, T=516ms) -----
         const releaseAtMs = Math.max(1, effectiveDuration) + 16;
         window.setTimeout(() => {
           const STACK_STABLE_TS = typeof performance !== "undefined" ? performance.now() : 0;
           console.debug(
-            `[p11c][STACK_STABLE] ${STACK_STABLE_TS.toFixed(2)}  +${(STACK_STABLE_TS - INPUT_RECEIVED_TS).toFixed(2)}ms  (end translate3d bezier)`,
+            `[p11c][STACK_STABLE] ${STACK_STABLE_TS.toFixed(2)}  +${(STACK_STABLE_TS - INPUT_RECEIVED_TS).toFixed(2)}ms  (HARD SNAP EXACT ok, release now)`,
           );
 
           try {
@@ -499,21 +682,114 @@ export function StorytellingNavigatorProvider({
             );
 
             try {
-              // skipTransition = cleanup posterior. YA SE REALIZÓ el cambio visual via CSS attribute.
-              // Esto solo limpia los pseudo-elements sin ejecutar animación default.
               vt.skipTransition();
               const VT_FINISHED_TS = typeof performance !== "undefined" ? performance.now() : 0;
               console.debug(
                 `[p11c][VT_FINISHED] ${VT_FINISHED_TS.toFixed(2)}  +${(VT_FINISHED_TS - INPUT_RECEIVED_TS).toFixed(2)}ms  (skipTransition done)`,
               );
             } catch {
-              /* no-op. Ya se aplicó el release visual y el stack está stable. */
+              /* no-op */
             }
 
-            // Limpiar atributo después de 1 frame paint del skip.
+            // ----- TIMEPOINT 3: RESTORE / HANDOFF SIN FLASH A React (64ms) -----
             window.setTimeout(() => {
-              if (typeof document !== "undefined") {
+              if (typeof document === "undefined" || typeof window === "undefined") return;
+              try {
                 document.documentElement.removeAttribute("data-cinematic-vt-release");
+              } catch {
+                /* ignore */
+              }
+              const stackEl = document.querySelector<HTMLElement>(
+                '[data-storytelling-stack="true"]',
+              );
+              if (stackEl) {
+                // ⭐ SPRINT 12.7.B.3 · PARTE 1.5 FIX FINAL HARD HANDOFF
+                //
+                // ROOT CAUSE del flash Scene-0 confirmado por probes Parte1.5-P0:
+                //   useMemo(stackStyle) en StorytellingViewport NO reevalúa cuando currentScene
+                //   ya no cambia (la escena ya está en su sitio). React NO re-pinta el style
+                //   declarativo en el atributo style = por tanto cuando nosotros hacemos
+                //     stackEl.style.transform = ""
+                //   el atributo style pierde el transform declarativo también → stack cae a
+                //   translateY=0 durante 2-5 frames o hasta que el siguiente goTo produzca un
+                //   re-render React.
+                //
+                // SOLUCIÓN (sin tocar StorytellingRoot):
+                //   1) Dejar de inmediato transition="" (regresar bezier = React declarativo CSS)
+                //   2) NUNCA limpiar transform en esta transacción. Conservar inline set en la
+                //      escena actual hasta el PRÓXIMO goTo (cuando currentScene cambie, React
+                //      sí volverá a re-pintar stackStyle declarativo).
+                //   3) Para restaurar control React en la SIGUIENTE transición, usamos un
+                //      pre-hook dentro del siguiente goTo que limpia inline residual al
+                //      comienzo (antes de startViewTransition), garantizando que no existe
+                //      conflicto.
+                //   4) Polling safe-clear por si acaso React re-render por resize / otras causas.
+                stackEl.style.transition = preservedInlineTransition || "";
+                // NO HACER stackEl.style.transform = "" → ¡PROHIBIDO! (flash 0px).
+                // Conservamos el inline transform y limpiaremos safe en el siguiente goTo.
+                void stackEl.offsetTop;
+
+                // ---- Polling safe-clear (solo actuará si React ha vuelto a pintar stackStyle) ----
+                if (
+                  typeof (window as unknown as { requestAnimationFrame?: (cb: () => void) => void })
+                    .requestAnimationFrame === "function"
+                ) {
+                  const MAX_POLLS = 10; // 10 * 80ms ≈ 800ms máx de polling
+                  let polls = 0;
+                  const checkAndMaybeClear = () => {
+                    polls += 1;
+                    const elNow = document.querySelector<HTMLElement>(
+                      '[data-storytelling-stack="true"]',
+                    );
+                    if (!elNow) return;
+                    const COMPUTED_NOW = readComputedStackTy();
+                    const EXPECTED_NOW = -1 * clamped * (window.innerHeight || 0);
+                    const GAP = Math.abs(COMPUTED_NOW - EXPECTED_NOW);
+                    // Caso OK: React ya re-pintó declarativo → si borramos inline no cambia nada.
+                    const IS_ALIGNED = GAP < 0.5;
+                    if (IS_ALIGNED) {
+                      const transformBefore = elNow.style.transform || "";
+                      elNow.style.transform = "";
+                      elNow.style.transition = "";
+                      void elNow.offsetTop;
+                      const COMPUTED_AFTER = readComputedStackTy();
+                      const GAP_AFTER = Math.abs(COMPUTED_AFTER - EXPECTED_NOW);
+                      if (GAP_AFTER < 0.5) {
+                        console.debug(
+                          `[p15][SAFE_CLEAR_POLL_OK] polls=${polls} · before inline="${transformBefore}" · gap_before=${GAP.toFixed(6)}px → gap_after_clear=${GAP_AFTER.toFixed(6)}px. React declarativo alinea → safe clear.`,
+                        );
+                        return;
+                      }
+                      // Rollback si clear produjo desvío (no debería; pero defendemos).
+                      elNow.style.transform = transformBefore;
+                      elNow.style.transition = preservedInlineTransition || "";
+                      void elNow.offsetTop;
+                      console.debug(
+                        `[p15][SAFE_CLEAR_ROLLBACK] gap after clear=${GAP_AFTER.toFixed(6)}px → rollback inline para no flash.`,
+                      );
+                    }
+                    if (polls < MAX_POLLS) {
+                      window.setTimeout(() => {
+                        (
+                          window as unknown as {
+                            requestAnimationFrame: (cb: () => void) => void;
+                          }
+                        ).requestAnimationFrame(checkAndMaybeClear);
+                      }, 80);
+                    } else {
+                      console.debug(
+                        `[p15][SAFE_CLEAR_ABORT] max polls. Dejamos inline declarativo (igual posición, no hay flash visual). El siguiente goTo() hará pre-hook clear.`,
+                      );
+                    }
+                  };
+                  (
+                    window as unknown as { requestAnimationFrame: (cb: () => void) => void }
+                  ).requestAnimationFrame(checkAndMaybeClear);
+                }
+
+                console.debug(
+                  `[p15][RESTORE_HANDOFF_FINAL] transition restituido; inline TRANSFORM conservado (NO clear). Safe-clear polling hasta React aligned.`,
+                );
               }
             }, 64);
           } catch {

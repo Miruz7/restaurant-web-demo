@@ -57,12 +57,12 @@ export const FEATURED_CATEGORIES_INNER_CLASS = [
  *   │  INNER flex-col items-center justify-center         │       *
  *   │  ┌─ ROW flex-row items-center justify-start ─────┐ │       *
  *   │  │  COL IZQ         │   COL DER                  │ │       *
- *   │  │  █ Escolares     │   Explora nuestras cat...  │ │       *
- *   │  │  │ Tecnología    │   Todo lo que necesitas... │ │       *
- *   │  │  │ Impresión     │                            │ │       *
- *   │  │  │ Oficina       │   Escolares                │ │       *
- *   │  │                  │   Cuadernos...             │ │       *
- *   │  │                  │   Explorar categoría →     │ │       *
+ *   │  │  █ Desayunos     │   Descubre nuestro menú    │ │       *
+ *   │  │  │ Comidas       │   Disfruta una selección   │ │       *
+ *   │  │  │ Cenas         │                            │ │       *
+ *   │  │  │ Bebidas       │   Desayunos                │ │       *
+ *   │  │                  │   Comienza el día con...   │ │       *
+ *   │  │                  │   Ver desayunos →          │ │       *
  *   │  └───────────────────────────────────────────────┘ │       *
  *   └─────────────────────────────────────────────────────┘       *
  * =============================================================== */
@@ -108,14 +108,21 @@ export const SHOWCASE_BG_LAYER_COMMON = [
   "absolute inset-0 z-0 block w-full h-full",
   "select-none pointer-events-none",
   "object-cover object-center",
-  "will-change-opacity will-change-filter",
+  "will-change-opacity",
 ].join(" ");
 
-export const SHOWCASE_BG_TRANSITION_CLASS = [
-  `transition-[filter,opacity] duration-[460ms] ${STORYTELLING_BEZIER_CSS}`,
-]
-  .join(" ")
-  .trim();
+/*
+ * Sprint 12.7.B.7: NO transition on BG layers.
+ * Diagnostic B.6 confirmed the perceptual luminosity valley originates
+ * from the concurrent blur+opacity crossfade (BG out: 1→0 + 0→10 blur
+ * vs BG in: 0→1 + 10→0 blur). To eliminate the valley completely we
+ * do a DIRECT HARD SWAP after the image readiness gate finishes.
+ * The only visual transitions now are: (1) side nav indicator translateY
+ * 300 ms bezier + (2) info-wrap fade 300 ms bezier, matching the user
+ * requirement "the user must primarily perceive that the selection moved".
+ * SSOT 300 ms preserved; B.3 cinematic untouched.
+ */
+export const SHOWCASE_BG_TRANSITION_CLASS = "";
 
 /* ========================================================================= *
  * OVERLAY EDITORIAL (FREEZE Sprint 12.3.1)
@@ -179,12 +186,12 @@ export const SHOWCASE_BAR_TRACK_CLASS = [
   "rounded-full bg-white/18",
 ].join(" ");
 
-/** Indicador: 460 ms cubic-bezier(.22,1,.36,1) EXACTO · solo translateY. */
+/** Indicador: 300 ms cubic-bezier(.22,1,.36,1) EXACTO · solo translateY. */
 export const SHOWCASE_BAR_INDICATOR_CLASS = [
   "absolute left-0 top-0 block rounded-full bg-white/98",
   "shadow-[0_0_14px_rgba(255,255,255,0.26)]",
   "w-full h-[25%]",
-  `transition-transform duration-[460ms] ${STORYTELLING_BEZIER_CSS}`,
+  `transition-transform duration-[300ms] ${STORYTELLING_BEZIER_CSS}`,
   "will-change-transform",
 ].join(" ");
 
@@ -220,7 +227,7 @@ export const SHOWCASE_CATEGORY_ITEM_TEXT_BASE = [
 
 export const SHOWCASE_INFO_WRAP_CLASS = [
   "w-full flex flex-col items-start gap-[16px] md:gap-[24px] lg:gap-[32px]",
-  `transition-[opacity,transform] duration-[460ms] ${STORYTELLING_BEZIER_CSS}`,
+  `transition-[opacity,transform] duration-[300ms] ${STORYTELLING_BEZIER_CSS}`,
   "will-change-opacity will-change-transform",
 ].join(" ");
 

@@ -21,6 +21,7 @@ import {
   LOCATION_INFO_ITEM_CLASS,
   LOCATION_INFO_LABEL_CLASS,
   LOCATION_INFO_LIST_CLASS,
+  LOCATION_INFO_ROOT_CLASS,
   LOCATION_INFO_VALUE_CLASS,
   LOCATION_SCHEDULE_DAY_CLASS,
   LOCATION_SCHEDULE_HOURS_CLASS,
@@ -92,14 +93,7 @@ export default function LocationInfo({
   headingId,
 }: LocationInfoProps): ReactElement {
   return (
-    <div
-      className={cn(
-        "w-full",
-        "flex flex-col items-stretch",
-        "gap-[40px] md:gap-[44px] lg:gap-[48px]",
-        className,
-      )}
-    >
+    <div className={cn(LOCATION_INFO_ROOT_CLASS, className)}>
       {/* ----- Head: eyebrow · heading · description --------------------- */}
       <header className={LOCATION_HEAD_CLASS}>
         <span className={LOCATION_EYEBROW_CLASS}>{data.eyebrow}</span>
@@ -221,7 +215,7 @@ export default function LocationInfo({
         </a>
         <a
           href={data.secondaryCTA.href}
-          aria-label={`Llamar a la tienda ${data.phone.display}`}
+          aria-label={`Llamar al restaurante ${data.phone.display}`}
           className={cn(LOCATION_CTA_SECONDARY_CLASS, "min-h-[44px]")}
         >
           <svg

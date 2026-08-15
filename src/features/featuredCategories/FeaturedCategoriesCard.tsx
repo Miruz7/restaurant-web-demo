@@ -23,25 +23,26 @@ import type {
   FeaturedCategoryIconKey,
 } from "./FeaturedCategories.types";
 import {
-  CategoryIconEscolares,
-  CategoryIconImpresion,
-  CategoryIconOficina,
-  CategoryIconTecnologia,
+  CategoryIconBebidas,
+  CategoryIconCenas,
+  CategoryIconComidas,
+  CategoryIconDesayunos,
 } from "./FeaturedCategories.icons";
 import type { ReactElement } from "react";
 
 const ICON_BY_KEY: Record<FeaturedCategoryIconKey, () => ReactElement> = {
-  escolares: CategoryIconEscolares,
-  tecnologia: CategoryIconTecnologia,
-  impresion: CategoryIconImpresion,
-  oficina: CategoryIconOficina,
+  desayunos: CategoryIconDesayunos,
+  comidas: CategoryIconComidas,
+  cenas: CategoryIconCenas,
+  bebidas: CategoryIconBebidas,
 };
 
 function FeaturedCategoriesCard({
   category,
   className,
+  onOpenMenuModal,
 }: FeaturedCategoriesCardProps): React.ReactElement {
-  const { image, title, description, iconKey, href, motionDelayMs } = category;
+  const { image, title, description, iconKey, motionDelayMs } = category;
   const Icon = ICON_BY_KEY[iconKey];
   const delayStyle = buildFeaturedCardDelay(motionDelayMs);
 
@@ -72,9 +73,9 @@ function FeaturedCategoriesCard({
   );
 
   return (
-    <a
-      href={href}
-      role="link"
+    <button
+      type="button"
+      onClick={() => onOpenMenuModal?.(category)}
       aria-label={`Ver categoría ${title}`}
       className={cn(
         getFeaturedCategoriesCardClasses(),
@@ -85,7 +86,7 @@ function FeaturedCategoriesCard({
       data-hero-motion="featured-category"
     >
       {content}
-    </a>
+    </button>
   );
 }
 

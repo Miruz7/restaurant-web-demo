@@ -21,11 +21,11 @@ function Footer({ className, style }: FooterProps) {
     >
       <Section spacing="none">
         <Container size="3xl" fullWidth className={FOOTER_CONTAINER_CLASSES}>
-          <a href="/" className={FOOTER_LOGO_CLASSES} aria-label="Papelería Nova - Inicio">
-            Papelería Nova
+          <a href="/" className={FOOTER_LOGO_CLASSES} aria-label="Sabor de Casa - Inicio">
+            Sabor de Casa
           </a>
           <p className={FOOTER_COPY_CLASSES}>
-            © {year} Papelería Nova. Todos los derechos reservados.
+            © {year} Sabor de Casa. Todos los derechos reservados.
           </p>
         </Container>
       </Section>

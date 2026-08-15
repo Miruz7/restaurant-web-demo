@@ -9,7 +9,11 @@ import FeaturedCategoriesCard from "./FeaturedCategoriesCard";
 import { getFeaturedCategoriesGridClasses } from "./FeaturedCategories.config";
 import type { FeaturedCategoriesGridProps } from "./FeaturedCategories.types";
 
-function FeaturedCategoriesGrid({ categories, className }: FeaturedCategoriesGridProps) {
+function FeaturedCategoriesGrid({
+  categories,
+  className,
+  onOpenMenuModal,
+}: FeaturedCategoriesGridProps) {
   return (
     <div
       className={cn(getFeaturedCategoriesGridClasses(), className)}
@@ -18,7 +22,7 @@ function FeaturedCategoriesGrid({ categories, className }: FeaturedCategoriesGri
     >
       {categories.map((c) => (
         <div role="listitem" key={c.id} className="w-full h-full flex flex-col">
-          <FeaturedCategoriesCard category={c} />
+          <FeaturedCategoriesCard category={c} onOpenMenuModal={onOpenMenuModal} />
         </div>
       ))}
     </div>

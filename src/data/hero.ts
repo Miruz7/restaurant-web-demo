@@ -37,18 +37,16 @@ export interface HeroData {
  * ======================================================================*/
 
 export const HERO_DATA: HeroData = {
-  badge: "Papelería • Impresión • Tecnología",
-  heading: "Todo para crear, aprender y trabajar.",
+  badge: "Cocina mexicana • Desayunos • Comidas",
+  heading: "El sabor de casa, servido en cada plato.",
   description:
-    "Desde artículos escolares hasta soluciones para oficina e impresión digital. Todo en un mismo lugar con una experiencia moderna y organizada.",
+    "Disfruta una experiencia llena de sabor con desayunos, comidas, cenas y bebidas preparadas para compartir buenos momentos.",
   primaryCTA: {
-    label: "Explorar productos",
+    label: "Ver nuestro menú",
     href: "#catalogo",
   },
   secondaryCTA: {
-    label: "Conoce nuestros servicios",
-    // Sprint 12.5.2.a: Se retiró #servicios del flujo principal. Location Showcase
-    // cubre servicios de impresión / atención + ubicación de la tienda.
+    label: "Conoce nuestro restaurante",
     href: "#ubicacion",
   },
   scrollIndicatorLabel: "Desplazarse a la siguiente sección",

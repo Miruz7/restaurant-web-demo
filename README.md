@@ -78,7 +78,7 @@ Exploración rápida de categorías del menú.
 
 ### Scene 03 — Menú
 
-![Scene 03](docs/images/scene-03-menu.png)
+![Scene 03](docs/images/menu-desayunos.png)
 
 Detalle de cada categoría con platos y precios.
 
@@ -106,7 +106,7 @@ Apertura cinematográfica ≈ 750 ms con **cierre instantáneo**.
 ## 📱 Responsive Design
 
 ### Desktop
-![Desktop](docs/images/responsive-desktop.png)
+![Desktop](docs/images/scene-01-hero.png)
 
 ### Tablet
 ![Tablet](docs/images/responsive-tablet.png)
@@ -120,7 +120,7 @@ Diseño fluido y probado en 4 breakpoints: 1920×1080, 1366×768, 768×1024 y 39
 
 ## 📍 Location Experience
 
-![Location](docs/images/location.png)
+![Location](docs/images/scene-04-location.png)
 
 - Información de contacto (teléfono, WhatsApp)
 - Horarios de atención
